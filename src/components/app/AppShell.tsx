@@ -21,6 +21,7 @@ import { AnimatedOutlet } from '@/components/app/PageTransitions';
 interface NavItem {
   to: string;
   label: string;
+  shortLabel?: string;
   icon: LucideIcon;
   end?: boolean;
 }
@@ -30,7 +31,7 @@ const primaryNav: NavItem[] = [
   { to: '/app/journey', label: 'Peta Studi', icon: Map },
   { to: '/app/specializations', label: 'Peminatan', icon: Compass },
   { to: '/app/scenarios', label: 'Simulasi', icon: Calculator },
-  { to: '/app/advisor-brief', label: 'Ringkasan PA', icon: FileText },
+  { to: '/app/advisor-brief', label: 'Ringkasan PA', shortLabel: 'Ringkasan', icon: FileText },
 ];
 
 function BrandMark({ compact = false }: { compact?: boolean }) {
@@ -179,16 +180,19 @@ function MobileBottomNav() {
               <NavLink
                 to={item.to}
                 end={item.end}
+                aria-label={item.label}
                 className={({ isActive }) =>
                   cn(
-                    'flex h-16 flex-col items-center justify-center gap-1 p-1 text-[11px] font-medium text-muted',
+                    'flex h-16 flex-col items-center justify-center gap-1 px-0.5 text-[11px] font-medium text-muted',
                     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/40',
                     isActive && 'text-primary',
                   )
                 }
               >
                 <Icon className="h-5 w-5" aria-hidden="true" />
-                {item.label}
+                <span className="max-w-full truncate leading-none">
+                  {item.shortLabel ?? item.label}
+                </span>
               </NavLink>
             </li>
           );
