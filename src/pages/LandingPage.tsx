@@ -36,10 +36,10 @@ function SemesterDot({ semester }: { semester: number }) {
     <span
       className={
         done
-          ? 'flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary'
+          ? 'flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary md:h-9 md:w-9'
           : semester === 5
-            ? 'flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-primary text-ink'
-            : 'flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border text-muted'
+            ? 'flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-primary text-ink md:h-9 md:w-9'
+            : 'flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-border text-muted md:h-9 md:w-9'
       }
       title={
         done
@@ -49,7 +49,11 @@ function SemesterDot({ semester }: { semester: number }) {
             : `Semester ${semester} mendatang`
       }
     >
-      {done ? <CheckCircle2 className="h-4 w-4" aria-hidden="true" /> : <span className="text-xs tabular">{semester}</span>}
+      {done ? (
+        <CheckCircle2 className="h-3.5 w-3.5 md:h-4 md:w-4" aria-hidden="true" />
+      ) : (
+        <span className="text-[10px] tabular md:text-xs">{semester}</span>
+      )}
     </span>
   );
 }
@@ -59,7 +63,7 @@ function TrackRow({ semesters }: { semesters: number[] }) {
     <div className="flex items-center">
       {semesters.map((semester, index) => (
         <Fragment key={semester}>
-          {index > 0 ? <span className="h-px w-3 shrink-0 bg-border" aria-hidden="true" /> : null}
+          {index > 0 ? <span className="h-px min-w-1.5 flex-1 bg-border" aria-hidden="true" /> : null}
           <SemesterDot semester={semester} />
         </Fragment>
       ))}
@@ -71,21 +75,10 @@ function HeroTrack() {
   return (
     <div className="card p-5 md:p-6" aria-hidden="true">
       <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-ink">
-        <GraduationCap className="h-4 w-4 text-primary" />
-        Contoh ilustrasi jalur Kang Haerin
+        <GraduationCap className="h-4 w-4 shrink-0 text-primary" />
+        <span>Contoh ilustrasi jalur Kang Haerin</span>
       </div>
-      <ol className="flex flex-col md:hidden">
-        <li>
-          <TrackRow semesters={[1, 2, 3, 4]} />
-        </li>
-        <li className="flex justify-end pr-[17px]" aria-hidden="true">
-          <span className="h-2 w-px bg-border" />
-        </li>
-        <li>
-          <TrackRow semesters={[8, 7, 6, 5]} />
-        </li>
-      </ol>
-      <ol className="hidden md:flex md:items-center">
+      <ol className="flex w-full items-center">
         <TrackRow semesters={[1, 2, 3, 4, 5, 6, 7, 8]} />
       </ol>
       <p className="mt-3 text-sm text-muted">
