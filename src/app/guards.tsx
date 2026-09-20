@@ -1,5 +1,6 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useAppStore } from '@/stores/appStore';
+import { AnimatedOutlet, PageLoader } from '@/components/app/PageTransitions';
 
 export function RequireProfile() {
   const profile = useAppStore((state) => state.persisted.profile);
@@ -18,17 +19,13 @@ export function RedirectIfOnboarded() {
   if (profile && onboardingCompleted) {
     return <Navigate to="/app" replace />;
   }
-  return <Outlet />;
+  return <AnimatedOutlet />;
 }
 
 export function AppBootstrap({ children }: { children: React.ReactNode }) {
   const hasHydrated = useAppStore((state) => state.hasHydrated);
   if (!hasHydrated) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-surface" role="status">
-        <p className="text-sm text-muted">Memuat data lokal...{''}</p>
-      </div>
-    );
+    return <PageLoader />;
   }
   return children;
 }

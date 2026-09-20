@@ -22,7 +22,7 @@ export function CareerRoleCard({ roleId }: { roleId: string }) {
     .filter((name): name is string => Boolean(name));
 
   return (
-    <article className="card flex flex-col p-5">
+    <article className="card flex h-full flex-col p-5">
       <div className="flex flex-wrap items-start justify-between gap-2">
         <div className="min-w-0">
           <h3 className="text-base font-semibold text-ink">{role.title}</h3>

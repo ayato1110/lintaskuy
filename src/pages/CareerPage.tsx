@@ -34,7 +34,7 @@ export function CareerPage() {
         reason="Setiap peran dihubungkan ke kompetensi, mata kuliah, peminatan, dan posisi Magang. Informasi tidak menggunakan skor kecocokan."
       />
 
-      <div className="mt-4 grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <div className="mt-4 grid auto-rows-fr grid-cols-1 gap-6 lg:grid-cols-2">
         {careerRoles.map((role) => (
           <CareerRoleCard key={role.id} roleId={role.id} />
         ))}

@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   ArrowRight,
@@ -29,7 +30,42 @@ const benefits = [
   },
 ];
 
-const journeySemesters = Array.from({ length: 8 }, (_, index) => index + 1);
+function SemesterDot({ semester }: { semester: number }) {
+  const done = semester <= 4;
+  return (
+    <span
+      className={
+        done
+          ? 'flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary'
+          : semester === 5
+            ? 'flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-primary text-ink'
+            : 'flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border text-muted'
+      }
+      title={
+        done
+          ? `Semester ${semester} selesai`
+          : semester === 5
+            ? `Semester ${semester} berjalan`
+            : `Semester ${semester} mendatang`
+      }
+    >
+      {done ? <CheckCircle2 className="h-4 w-4" aria-hidden="true" /> : <span className="text-xs tabular">{semester}</span>}
+    </span>
+  );
+}
+
+function TrackRow({ semesters }: { semesters: number[] }) {
+  return (
+    <div className="flex items-center">
+      {semesters.map((semester, index) => (
+        <Fragment key={semester}>
+          {index > 0 ? <span className="h-px w-3 shrink-0 bg-border" aria-hidden="true" /> : null}
+          <SemesterDot semester={semester} />
+        </Fragment>
+      ))}
+    </div>
+  );
+}
 
 function HeroTrack() {
   return (
@@ -38,30 +74,16 @@ function HeroTrack() {
         <GraduationCap className="h-4 w-4 text-primary" />
         Contoh ilustrasi jalur Kang Haerin
       </div>
-      <ol className="flex flex-wrap items-center gap-1">
-        {journeySemesters.map((semester) => {
-          const done = semester <= 4;
-          return (
-            <li key={semester} className="flex items-center gap-1">
-              {semester > 1 ? <span className="h-px w-3 bg-border" /> : null}
-              <span
-                className={
-                  done
-                    ? 'flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-primary'
-                    : semester === 5
-                      ? 'flex h-9 w-9 items-center justify-center rounded-full border-2 border-primary text-ink'
-                      : 'flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted'
-                }
-                title={done ? `Semester ${semester} selesai` : semester === 5 ? `Semester ${semester} berjalan` : `Semester ${semester} mendatang`}
-              >
-                {done ? <CheckCircle2 className="h-4 w-4" /> : <span className="text-xs tabular">{semester}</span>}
-              </span>
-              {semester === 4 ? (
-                <span className="sr-only">progres mengikuti semester Semester 1 sampai 4</span>
-              ) : null}
-            </li>
-          );
-        })}
+      <ol className="flex flex-col">
+        <li>
+          <TrackRow semesters={[1, 2, 3, 4]} />
+        </li>
+        <li className="flex justify-end pr-[17px]" aria-hidden="true">
+          <span className="h-2 w-px bg-border" />
+        </li>
+        <li>
+          <TrackRow semesters={[8, 7, 6, 5]} />
+        </li>
       </ol>
       <p className="mt-3 text-sm text-muted">
         Empat semester pertama selesai, Semester 5 sedang berjalan, sisanya direncanakan menuju 144

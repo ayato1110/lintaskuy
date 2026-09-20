@@ -67,7 +67,7 @@ function SpecializationCard({ spec }: { spec: Specialization }) {
   const roles = rolesForSpecialization(spec.id);
 
   return (
-    <article className="card flex flex-col p-5">
+    <article className="card flex h-full flex-col p-5">
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0">
           <h3 className="text-base font-semibold text-ink">{spec.name}</h3>
@@ -180,7 +180,7 @@ export function SpecializationsPage() {
               reason="Jalur terkunci tetap bisa dibandingkan dengan jalur lain melalui scenario simulator."
             />
           ) : null}
-          <div className="mt-4 grid grid-cols-1 gap-6 lg:grid-cols-3">
+          <div className="mt-4 grid auto-rows-fr grid-cols-1 gap-6 lg:grid-cols-3">
             {specializations.map((spec) => (
               <SpecializationCard key={spec.id} spec={spec} />
             ))}
@@ -193,7 +193,7 @@ export function SpecializationsPage() {
             title="Sumber informasi karier"
             reason="Setiap peran dihubungkan ke kompetensi, mata kuliah, peminatan, dan posisi Magang. Informasi tidak menggunakan skor kecocokan."
           />
-          <div className="mt-4 grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <div className="mt-4 grid auto-rows-fr grid-cols-1 gap-6 lg:grid-cols-2">
             {careerRoles.map((role) => (
               <CareerRoleCard key={role.id} roleId={role.id} />
             ))}

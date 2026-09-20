@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type { LucideIcon } from 'lucide-react';
 import {
   BookOpen,
@@ -5,13 +6,17 @@ import {
   CircleGauge,
   Compass,
   FileText,
+  LogOut,
   Map,
   Settings,
 } from 'lucide-react';
-import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import type { ReactNode } from 'react';
 import { useAppStore } from '@/stores/appStore';
 import { cn } from '@/lib/cn';
+import { Button } from '@/components/ui/button';
+import { ConfirmDialog } from '@/components/ui/dialog';
+import { AnimatedOutlet } from '@/components/app/PageTransitions';
 
 interface NavItem {
   to: string;
@@ -28,14 +33,14 @@ const primaryNav: NavItem[] = [
   { to: '/app/advisor-brief', label: 'Ringkasan PA', icon: FileText },
 ];
 
-function BrandMark() {
+function BrandMark({ compact = false }: { compact?: boolean }) {
   return (
-    <div className="flex items-center gap-2.5">
+    <div className={compact ? 'flex items-center gap-2' : 'flex items-center gap-2.5'}>
       <span
         aria-hidden="true"
         className="flex h-8 w-8 items-center justify-center rounded-control bg-ink text-white"
       >
-        <BookOpen className="h-4 w-4" />
+        <BookOpen className={compact ? 'h-3.5 w-3.5' : 'h-4 w-4'} />
       </span>
       <span className="text-base font-semibold tracking-tight text-ink">
         LINTAS<span className="text-primary">.</span>
@@ -99,8 +104,67 @@ function DesktopSidebar() {
   );
 }
 
+function MobileTopBar() {
+  const profile = useAppStore((state) => state.persisted.profile);
+  const resetApp = useAppStore((state) => state.resetApp);
+  const navigate = useNavigate();
+  const [confirmLogout, setConfirmLogout] = useState(false);
+  if (!profile) return null;
+
+  const initial = profile.name.trim().charAt(0).toUpperCase() || 'U';
+
+  return (
+    <header className="no-print sticky top-0 z-30 flex items-center justify-between gap-2 border-b border-border bg-surface/95 px-4 py-2.5 backdrop-blur lg:hidden">
+      <button
+        type="button"
+        onClick={() => navigate('/app')}
+        aria-label="Kembali ke beranda"
+        className="rounded-control focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+      >
+        <BrandMark compact />
+      </button>
+      <div className="flex items-center gap-1.5">
+        <button
+          type="button"
+          onClick={() => navigate('/app/settings')}
+          className="flex max-w-[10rem] items-center gap-2 rounded-full border border-border bg-surface py-1 pl-1 pr-3 text-xs font-medium text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+        >
+          <span
+            aria-hidden="true"
+            className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary"
+          >
+            {initial}
+          </span>
+          <span className="truncate">{profile.name}</span>
+        </button>
+        <Button
+          variant="ghost"
+          size="sm"
+          aria-label="Keluar dari sesi ini"
+          onClick={() => setConfirmLogout(true)}
+        >
+          <LogOut className="h-4 w-4" aria-hidden="true" />
+        </Button>
+      </div>
+      <ConfirmDialog
+        open={confirmLogout}
+        onOpenChange={setConfirmLogout}
+        title="Keluar dari sesi ini?"
+        description="Profil dan rencana pada perangkat ini dihapus. Anda kembali ke halaman awal untuk memulai ulang."
+        confirmLabel="Keluar"
+        destructive
+        onConfirm={() => {
+          resetApp();
+          navigate('/');
+        }}
+      />
+    </header>
+  );
+}
+
 function MobileBottomNav() {
   const profile = useAppStore((state) => state.persisted.profile);
+  const items: NavItem[] = [...primaryNav, { to: '/app/settings', label: 'Profil', icon: Settings }];
   if (!profile) return null;
   return (
     <nav
@@ -108,7 +172,7 @@ function MobileBottomNav() {
       className="no-print fixed inset-x-0 bottom-0 z-30 border-t border-border bg-surface pb-[env(safe-area-inset-bottom)] lg:hidden"
     >
       <ul className="flex items-stretch justify-around">
-        {primaryNav.map((item) => {
+        {items.map((item) => {
           const Icon = item.icon;
           return (
             <li key={item.to} className="flex-1">
@@ -183,6 +247,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         Langsung ke konten
       </a>
       <DesktopSidebar />
+      <MobileTopBar />
       <div className="lg:pl-60">
         <StorageNotice />
         <main id="main-content" className="pb-24 lg:pb-12">
@@ -197,7 +262,7 @@ export function AppShell({ children }: { children: ReactNode }) {
 export function AppShellOutlet() {
   return (
     <AppShell>
-      <Outlet />
+      <AnimatedOutlet />
     </AppShell>
   );
 }
