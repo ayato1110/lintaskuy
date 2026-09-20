@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "items": [
+    {
+      "id": "haerin-enterprise-balanced",
+      "name": "Enterprise — Seimbang",
+      "targetSemester": 5,
+      "selectedCourseIds": [
+        "isp151",
+        "isp152",
+        "isp153",
+        "isp154",
+        "isp155",
+        "isp156",
+        "esy155",
+        "esy156"
+      ],
+      "specializationId": "enterprise-digital",
+      "commitments": [
+        {
+          "id": "organization",
+          "label": "Organisasi",
+          "hoursPerWeek": 6
+        }
+      ],
+      "targetCareerRoleId": "uiux-designer",
+      "targetInternshipRole": "UI/UX Design Intern"
+    },
+    {
+      "id": "haerin-data-comparison",
+      "name": "Data — Pembanding",
+      "targetSemester": 5,
+      "selectedCourseIds": [
+        "isp151",
+        "isp152",
+        "isp153",
+        "isp154",
+        "isp155",
+        "isp156",
+        "esy153",
+        "esy154"
+      ],
+      "specializationId": "data-bi",
+      "commitments": [
+        {
+          "id": "organization",
+          "label": "Organisasi",
+          "hoursPerWeek": 6
+        }
+      ],
+      "targetCareerRoleId": "data-analyst",
+      "targetInternshipRole": "Data Analyst Intern"
+    }
+  ]
+}

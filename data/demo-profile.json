@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "id": "kang-haerin-demo",
+  "name": "Kang Haerin",
+  "isDemoPersona": true,
+  "currentSemester": 5,
+  "performanceIndex": 3.67,
+  "completedCredits": 84,
+  "completedCourseIds": [
+    "fst115",
+    "fst116",
+    "isp111",
+    "isp113",
+    "isp114",
+    "isp115",
+    "isp212",
+    "uns211",
+    "isp121",
+    "isp122",
+    "isp123",
+    "isp424",
+    "unj123",
+    "unj126",
+    "uns122",
+    "uns421",
+    "isp131",
+    "isp132",
+    "isp133",
+    "isp135",
+    "isp136",
+    "isp137",
+    "isp234",
+    "isp141",
+    "isp142",
+    "isp143",
+    "isp145",
+    "isp146",
+    "isp147",
+    "isp444",
+    "uns144"
+  ],
+  "allCompletedGradesAboveC": true,
+  "weeklyCommitments": [
+    {
+      "id": "organization",
+      "label": "Organisasi",
+      "hoursPerWeek": 6
+    }
+  ],
+  "exploredSpecializationIds": [
+    "enterprise-digital",
+    "data-bi"
+  ],
+  "lockedSpecializationId": null,
+  "exploredCareerRoleIds": [
+    "uiux-designer",
+    "digital-product-analyst"
+  ],
+  "targetInternshipTitles": [
+    "UI/UX Design Intern",
+    "Product Management Intern"
+  ]
+}

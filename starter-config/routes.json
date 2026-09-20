@@ -1,0 +1,52 @@
+[
+  {
+    "path": "/",
+    "name": "Landing",
+    "public": true
+  },
+  {
+    "path": "/onboarding",
+    "name": "Onboarding",
+    "public": true
+  },
+  {
+    "path": "/app",
+    "name": "Dashboard"
+  },
+  {
+    "path": "/app/journey",
+    "name": "Journey Map"
+  },
+  {
+    "path": "/app/specializations",
+    "name": "Peminatan Explorer"
+  },
+  {
+    "path": "/app/specializations/career",
+    "name": "Kompas Karier"
+  },
+  {
+    "path": "/app/scenarios",
+    "name": "Scenarios"
+  },
+  {
+    "path": "/app/scenarios/new",
+    "name": "New Scenario"
+  },
+  {
+    "path": "/app/scenarios/compare",
+    "name": "Compare Scenarios"
+  },
+  {
+    "path": "/app/internship",
+    "name": "Perencanaan Magang"
+  },
+  {
+    "path": "/app/advisor-brief",
+    "name": "Advisor Brief"
+  },
+  {
+    "path": "/app/settings",
+    "name": "Settings"
+  }
+]

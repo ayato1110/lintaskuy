@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-ink: #0b1220;
+    --color-muted: #526070;
+    --color-border: #d8e0e8;
+    --color-surface: #ffffff;
+    --color-surface-subtle: #f6f8fb;
+    --color-primary: #2563eb;
+    --color-primary-strong: #1d4ed8;
+    --color-teal: #0f766e;
+    --color-success: #15803d;
+    --color-warning: #b45309;
+    --color-danger: #b91c1c;
+    --color-info: #0369a1;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-surface text-ink font-sans antialiased;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply text-ink;
+    text-wrap: balance;
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum';
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: #bfdbfe;
+    color: var(--color-ink);
+  }
+}
+
+@layer components {
+  .container-content {
+    @apply mx-auto w-full max-w-content px-4 md:px-8;
+    padding-top: 1rem;
+    padding-bottom: 4rem;
+  }
+
+  .card {
+    @apply rounded-card border border-border bg-surface;
+  }
+
+  .card-subtle {
+    @apply rounded-card border border-border bg-surface-subtle;
+  }
+
+  .field-label {
+    @apply mb-1 block text-sm font-medium text-ink;
+  }
+
+  .field-hint {
+    @apply mt-1 text-sm text-muted;
+  }
+
+  .field-error {
+    @apply mt-1 text-sm text-danger;
+  }
+
+  .chip-status {
+    @apply inline-flex items-center gap-1.5 rounded-pill border border-border px-2.5 py-0.5 text-xs font-medium;
+  }
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm 12mm;
+  }
+
+  body {
+    background: #ffffff;
+    color: #000000;
+    font-size: 12px;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-container {
+    max-width: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .print-container * {
+    color: #000000 !important;
+    background-color: #ffffff !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  .print-container a {
+    text-decoration: underline;
+  }
+
+  .print-section {
+    break-inside: avoid;
+  }
+
+  .print-section-title {
+    break-after: avoid;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

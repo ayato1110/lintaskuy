@@ -1,0 +1,25 @@
+# Package Manifest
+
+- `AGENTS.md`
+- `README.md`
+- `data/academic-rules.json`
+- `data/career-paths.json`
+- `data/curriculum.json`
+- `data/demo-profile.json`
+- `data/sample-scenarios.json`
+- `data/specializations.json`
+- `docs/01-PRD.md`
+- `docs/02-APPFLOW.md`
+- `docs/03-UI-UX-DESIGN-BRIEF.md`
+- `docs/04-DESIGN-SYSTEM.md`
+- `docs/05-TRD.md`
+- `docs/06-DATA-AND-RULES.md`
+- `docs/07-USABILITY-TEST-AND-DEMO.md`
+- `docs/08-CONTENT-AND-MICROCOPY.md`
+- `docs/09-IMPLEMENTATION-PLAN.md`
+- `docs/10-ACCEPTANCE-CHECKLIST.md`
+- `prompts/MASTER-BUILD-PROMPT.md`
+- `prompts/QA-PROMPT.md`
+- `references/README.md`
+- `starter-config/design-tokens.json`
+- `starter-config/routes.json`

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "graduationCredits": 144,
+  "hasCommunityServiceCourse": false,
+  "creditLimit": {
+    "whenPerformanceIndexGreaterThan": 3.0,
+    "greaterLimit": 24,
+    "otherwiseLimit": 21,
+    "label": "Indeks Prestasi",
+    "source": "participant_confirmed"
+  },
+  "specialization": {
+    "lockFromSemester": 5,
+    "maxLocked": 1,
+    "coursesPerTrack": 4,
+    "creditsPerTrack": 12,
+    "source": "participant_confirmed"
+  },
+  "internship": {
+    "minimumCompletedCredits": 120,
+    "allCompletedGradesMustBeAbove": "C",
+    "comparison": "strictly_above",
+    "source": "participant_confirmed"
+  },
+  "assumptions": [
+    "Semester 8 model demo",
+    "Prerequisite map except internship",
+    "Project-heavy tags",
+    "General Seminar Usulan requirement"
+  ]
+}

@@ -1,0 +1,865 @@
+{
+  "schemaVersion": 1,
+  "officialCourseCountSemester1To7": 57,
+  "items": [
+    {
+      "id": "fst115",
+      "code": "FST115",
+      "name": "Dasar-Dasar Sains dan Teknologi",
+      "credits": 2,
+      "semester": 1,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "fst116",
+      "code": "FST116",
+      "name": "Teknologi Informasi dan Komunikasi",
+      "credits": 2,
+      "semester": 1,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "isp111",
+      "code": "ISP111",
+      "name": "Konsep Sistem Informasi",
+      "credits": 3,
+      "semester": 1,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "isp113",
+      "code": "ISP113",
+      "name": "Sistem Operasi",
+      "credits": 3,
+      "semester": 1,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "isp114",
+      "code": "ISP114",
+      "name": "Algoritma dan Pemrograman",
+      "credits": 3,
+      "semester": 1,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "isp115",
+      "code": "ISP115",
+      "name": "Matematika Diskrit",
+      "credits": 3,
+      "semester": 1,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "isp212",
+      "code": "ISP212",
+      "name": "Konsep Basis Data",
+      "credits": 3,
+      "semester": 1,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "uns211",
+      "code": "UNS211",
+      "name": "Agama I",
+      "credits": 2,
+      "semester": 1,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "isp121",
+      "code": "ISP121",
+      "name": "Sistem Informasi Manajemen",
+      "credits": 3,
+      "semester": 2,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "isp122",
+      "code": "ISP122",
+      "name": "Struktur Data",
+      "credits": 3,
+      "semester": 2,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [
+        "isp114"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "isp123",
+      "code": "ISP123",
+      "name": "Infrastruktur Teknologi Informasi",
+      "credits": 3,
+      "semester": 2,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "isp424",
+      "code": "ISP424",
+      "name": "Sistem Basis Data",
+      "credits": 3,
+      "semester": 2,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [
+        "isp212"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "unj123",
+      "code": "UNJ123",
+      "name": "Bahasa Inggris",
+      "credits": 2,
+      "semester": 2,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "unj126",
+      "code": "UNJ126",
+      "name": "Kewirausahaan",
+      "credits": 3,
+      "semester": 2,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "uns122",
+      "code": "UNS122",
+      "name": "Pancasila",
+      "credits": 2,
+      "semester": 2,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "uns421",
+      "code": "UNS421",
+      "name": "Agama II",
+      "credits": 2,
+      "semester": 2,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "isp131",
+      "code": "ISP131",
+      "name": "Jaringan Komputer",
+      "credits": 3,
+      "semester": 3,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "isp132",
+      "code": "ISP132",
+      "name": "Pemrograman Berorientasi Objek",
+      "credits": 3,
+      "semester": 3,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [
+        "isp114",
+        "isp122"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "isp133",
+      "code": "ISP133",
+      "name": "Analisis dan Perancangan Sistem Informasi",
+      "credits": 3,
+      "semester": 3,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [
+        "isp111",
+        "isp121"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "isp135",
+      "code": "ISP135",
+      "name": "Manajemen Proses Bisnis",
+      "credits": 3,
+      "semester": 3,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "isp136",
+      "code": "ISP136",
+      "name": "Fundamental ERP",
+      "credits": 3,
+      "semester": 3,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [
+        "isp121"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "isp137",
+      "code": "ISP137",
+      "name": "Statistika dan Probabilitas",
+      "credits": 3,
+      "semester": 3,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "isp234",
+      "code": "ISP234",
+      "name": "Pemrograman Berbasis Web",
+      "credits": 3,
+      "semester": 3,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [
+        "isp114",
+        "isp212"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": true
+    },
+    {
+      "id": "isp141",
+      "code": "ISP141",
+      "name": "Tata Kelola Teknologi Informasi",
+      "credits": 3,
+      "semester": 4,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [
+        "isp121"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "isp142",
+      "code": "ISP142",
+      "name": "Kepemimpinan dan Manajemen Organisasi",
+      "credits": 2,
+      "semester": 4,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "isp143",
+      "code": "ISP143",
+      "name": "Komunikasi Bisnis dan Teknis",
+      "credits": 2,
+      "semester": 4,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "isp145",
+      "code": "ISP145",
+      "name": "Technopreneurship",
+      "credits": 3,
+      "semester": 4,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "isp146",
+      "code": "ISP146",
+      "name": "Interaksi Manusia dan Komputer",
+      "credits": 3,
+      "semester": 4,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [
+        "isp133"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": true
+    },
+    {
+      "id": "isp147",
+      "code": "ISP147",
+      "name": "Analisis dan Visualisasi Data",
+      "credits": 3,
+      "semester": 4,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [
+        "isp137",
+        "isp424"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": true
+    },
+    {
+      "id": "isp444",
+      "code": "ISP444",
+      "name": "Pemrograman Berbasis Web Lanjut",
+      "credits": 3,
+      "semester": 4,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [
+        "isp234",
+        "isp424"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": true
+    },
+    {
+      "id": "uns144",
+      "code": "UNS144",
+      "name": "Bahasa Indonesia",
+      "credits": 2,
+      "semester": 4,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "isp151",
+      "code": "ISP151",
+      "name": "Manajemen Proyek Sistem Informasi",
+      "credits": 3,
+      "semester": 5,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [
+        "isp133",
+        "isp142"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": true
+    },
+    {
+      "id": "isp152",
+      "code": "ISP152",
+      "name": "Pengujian Perangkat Lunak dan Jaminan Kualitas",
+      "credits": 3,
+      "semester": 5,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [
+        "isp132",
+        "isp234"
+      ],
+      "prerequisiteMode": "any",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": true
+    },
+    {
+      "id": "isp153",
+      "code": "ISP153",
+      "name": "Manajemen Risiko dan Keamanan Informasi",
+      "credits": 3,
+      "semester": 5,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [
+        "isp123",
+        "isp131"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "isp154",
+      "code": "ISP154",
+      "name": "Arsitektur Sistem Perusahaan",
+      "credits": 3,
+      "semester": 5,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [
+        "isp136",
+        "isp135"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "isp155",
+      "code": "ISP155",
+      "name": "E-Bisnis",
+      "credits": 3,
+      "semester": 5,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [
+        "isp121",
+        "isp234"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": true
+    },
+    {
+      "id": "isp156",
+      "code": "ISP156",
+      "name": "Evaluasi dan Audit TI",
+      "credits": 3,
+      "semester": 5,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [
+        "isp141"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "esy151",
+      "code": "ESY151",
+      "name": "Adopsi Teknologi Informasi",
+      "credits": 3,
+      "semester": 5,
+      "type": "specialization",
+      "specializationId": "governance",
+      "prerequisiteIds": [
+        "isp121"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "esy152",
+      "code": "ESY152",
+      "name": "Tata Kelola Data",
+      "credits": 3,
+      "semester": 5,
+      "type": "specialization",
+      "specializationId": "governance",
+      "prerequisiteIds": [
+        "isp424",
+        "isp141"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "esy153",
+      "code": "ESY153",
+      "name": "Penambangan Data",
+      "credits": 3,
+      "semester": 5,
+      "type": "specialization",
+      "specializationId": "data-bi",
+      "prerequisiteIds": [
+        "isp137",
+        "isp147"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": true
+    },
+    {
+      "id": "esy154",
+      "code": "ESY154",
+      "name": "Pembelajaran Mesin",
+      "credits": 3,
+      "semester": 5,
+      "type": "specialization",
+      "specializationId": "data-bi",
+      "prerequisiteIds": [
+        "isp137",
+        "isp114"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": true
+    },
+    {
+      "id": "esy155",
+      "code": "ESY155",
+      "name": "Pemrograman Aplikasi Bergerak",
+      "credits": 3,
+      "semester": 5,
+      "type": "specialization",
+      "specializationId": "enterprise-digital",
+      "prerequisiteIds": [
+        "isp132"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": true
+    },
+    {
+      "id": "esy156",
+      "code": "ESY156",
+      "name": "Desain UI/UX",
+      "credits": 3,
+      "semester": 5,
+      "type": "specialization",
+      "specializationId": "enterprise-digital",
+      "prerequisiteIds": [
+        "isp146"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": true
+    },
+    {
+      "id": "isp161",
+      "code": "ISP161",
+      "name": "Proyek Sistem Informasi: Capstone Project",
+      "credits": 4,
+      "semester": 6,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [
+        "isp151",
+        "isp152",
+        "isp154"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": true
+    },
+    {
+      "id": "isp162",
+      "code": "ISP162",
+      "name": "Etika Profesi dan Profesional",
+      "credits": 2,
+      "semester": 6,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "isp164",
+      "code": "ISP164",
+      "name": "Startup Digital",
+      "credits": 3,
+      "semester": 6,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [
+        "isp145"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": true
+    },
+    {
+      "id": "isp165",
+      "code": "ISP165",
+      "name": "Bahasa Inggris II",
+      "credits": 3,
+      "semester": 6,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [
+        "unj123"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "isp263",
+      "code": "ISP263",
+      "name": "Metodologi Penelitian dan Penyusunan Karya Ilmiah",
+      "credits": 3,
+      "semester": 6,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [
+        "isp137",
+        "uns144"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "uns161",
+      "code": "UNS161",
+      "name": "Kewarganegaraan",
+      "credits": 2,
+      "semester": 6,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "esy161",
+      "code": "ESY161",
+      "name": "Inteligensi Bisnis",
+      "credits": 3,
+      "semester": 6,
+      "type": "specialization",
+      "specializationId": "data-bi",
+      "prerequisiteIds": [
+        "isp147",
+        "isp424"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": true
+    },
+    {
+      "id": "esy162",
+      "code": "ESY162",
+      "name": "Analisis Big Data",
+      "credits": 3,
+      "semester": 6,
+      "type": "specialization",
+      "specializationId": "data-bi",
+      "prerequisiteIds": [
+        "esy153",
+        "isp424"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": true
+    },
+    {
+      "id": "esy163",
+      "code": "ESY163",
+      "name": "Manajemen Layanan Teknologi Informasi",
+      "credits": 3,
+      "semester": 6,
+      "type": "specialization",
+      "specializationId": "governance",
+      "prerequisiteIds": [
+        "isp141"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "esy164",
+      "code": "ESY164",
+      "name": "Keamanan Siber",
+      "credits": 3,
+      "semester": 6,
+      "type": "specialization",
+      "specializationId": "governance",
+      "prerequisiteIds": [
+        "isp131",
+        "isp153"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": true
+    },
+    {
+      "id": "esy165",
+      "code": "ESY165",
+      "name": "Pemerintahan Elektronik",
+      "credits": 3,
+      "semester": 6,
+      "type": "specialization",
+      "specializationId": "enterprise-digital",
+      "prerequisiteIds": [
+        "esy151",
+        "isp141"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": true
+    },
+    {
+      "id": "esy166",
+      "code": "ESY166",
+      "name": "Teknologi Keuangan",
+      "credits": 3,
+      "semester": 6,
+      "type": "specialization",
+      "specializationId": "enterprise-digital",
+      "prerequisiteIds": [
+        "isp155",
+        "isp424"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": true
+    },
+    {
+      "id": "fst471",
+      "code": "FST471",
+      "name": "Seminar Usulan",
+      "credits": 2,
+      "semester": 7,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [
+        "isp263"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "unj172",
+      "code": "UNJ172",
+      "name": "Magang",
+      "credits": 4,
+      "semester": 7,
+      "type": "required",
+      "specializationId": null,
+      "prerequisiteIds": [],
+      "prerequisiteMode": "all",
+      "ruleSource": "curriculum_source",
+      "projectHeavy": false
+    },
+    {
+      "id": "seminar-hasil",
+      "code": null,
+      "name": "Seminar Hasil",
+      "credits": 1,
+      "semester": 8,
+      "type": "demo_assumption",
+      "specializationId": null,
+      "prerequisiteIds": [
+        "fst471"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "demo_assumption",
+      "projectHeavy": false
+    },
+    {
+      "id": "skripsi-tugas-akhir",
+      "code": null,
+      "name": "Skripsi/Tugas Akhir",
+      "credits": 6,
+      "semester": 8,
+      "type": "demo_assumption",
+      "specializationId": null,
+      "prerequisiteIds": [
+        "fst471",
+        "isp263"
+      ],
+      "prerequisiteMode": "all",
+      "ruleSource": "demo_assumption",
+      "projectHeavy": false
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "lockFromSemester": 5,
+  "maxLocked": 1,
+  "items": [
+    {
+      "id": "governance",
+      "name": "Tata Kelola TI",
+      "courseIds": [
+        "esy151",
+        "esy152",
+        "esy163",
+        "esy164"
+      ],
+      "focus": "Tata kelola, layanan TI, data, risiko, dan keamanan."
+    },
+    {
+      "id": "data-bi",
+      "name": "Data & Inteligensi Bisnis",
+      "courseIds": [
+        "esy153",
+        "esy154",
+        "esy161",
+        "esy162"
+      ],
+      "focus": "Pengolahan data, analitik, machine learning, dan pengambilan keputusan."
+    },
+    {
+      "id": "enterprise-digital",
+      "name": "Enterprise & Aplikasi Digital",
+      "courseIds": [
+        "esy155",
+        "esy156",
+        "esy165",
+        "esy166"
+      ],
+      "focus": "Aplikasi mobile, UI/UX, layanan digital pemerintahan, dan teknologi keuangan."
+    }
+  ]
+}

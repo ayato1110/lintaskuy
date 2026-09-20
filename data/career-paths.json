@@ -1,0 +1,203 @@
+{
+  "schemaVersion": 1,
+  "disclaimer": "Informasi ini menunjukkan keterkaitan kompetensi dan bukan jaminan pekerjaan.",
+  "items": [
+    {
+      "id": "it-governance-analyst",
+      "title": "IT Governance Analyst",
+      "specializationIds": [
+        "governance"
+      ],
+      "skills": [
+        "IT governance",
+        "risk awareness",
+        "policy analysis"
+      ],
+      "supportingCourseIds": [
+        "isp141",
+        "isp156",
+        "esy151",
+        "esy163"
+      ],
+      "internshipTitles": [
+        "IT Governance Intern",
+        "IT Audit Intern"
+      ],
+      "portfolioIdeas": [
+        "Analisis tata kelola pada organisasi kecil",
+        "Pemetaan risiko dan kontrol"
+      ]
+    },
+    {
+      "id": "cybersecurity-analyst",
+      "title": "Cybersecurity Analyst",
+      "specializationIds": [
+        "governance"
+      ],
+      "skills": [
+        "network fundamentals",
+        "security risk",
+        "incident awareness"
+      ],
+      "supportingCourseIds": [
+        "isp131",
+        "isp153",
+        "esy164"
+      ],
+      "internshipTitles": [
+        "Information Security Intern"
+      ],
+      "portfolioIdeas": [
+        "Threat model sederhana",
+        "Checklist keamanan aplikasi"
+      ]
+    },
+    {
+      "id": "data-analyst",
+      "title": "Data Analyst",
+      "specializationIds": [
+        "data-bi"
+      ],
+      "skills": [
+        "data cleaning",
+        "visualization",
+        "statistical reasoning"
+      ],
+      "supportingCourseIds": [
+        "isp137",
+        "isp147",
+        "esy153",
+        "esy161"
+      ],
+      "internshipTitles": [
+        "Data Analyst Intern",
+        "Business Intelligence Intern"
+      ],
+      "portfolioIdeas": [
+        "Dashboard analitik",
+        "Eksplorasi dataset publik"
+      ]
+    },
+    {
+      "id": "ml-engineer",
+      "title": "Machine Learning Engineer",
+      "specializationIds": [
+        "data-bi"
+      ],
+      "skills": [
+        "programming",
+        "model evaluation",
+        "data preparation"
+      ],
+      "supportingCourseIds": [
+        "isp114",
+        "isp137",
+        "esy154",
+        "esy162"
+      ],
+      "internshipTitles": [
+        "Data Science Intern"
+      ],
+      "portfolioIdeas": [
+        "Model prediksi sederhana dengan evaluasi yang jelas"
+      ]
+    },
+    {
+      "id": "uiux-designer",
+      "title": "UI/UX Designer",
+      "specializationIds": [
+        "enterprise-digital"
+      ],
+      "skills": [
+        "user research",
+        "interaction design",
+        "prototyping",
+        "usability testing"
+      ],
+      "supportingCourseIds": [
+        "isp133",
+        "isp146",
+        "esy156"
+      ],
+      "internshipTitles": [
+        "UI/UX Design Intern",
+        "Product Design Intern"
+      ],
+      "portfolioIdeas": [
+        "Studi kasus perbaikan layanan mahasiswa",
+        "Prototype dan usability report"
+      ]
+    },
+    {
+      "id": "mobile-developer",
+      "title": "Mobile Application Developer",
+      "specializationIds": [
+        "enterprise-digital"
+      ],
+      "skills": [
+        "object-oriented programming",
+        "mobile UI",
+        "testing"
+      ],
+      "supportingCourseIds": [
+        "isp132",
+        "isp152",
+        "esy155"
+      ],
+      "internshipTitles": [
+        "Mobile Development Intern"
+      ],
+      "portfolioIdeas": [
+        "Aplikasi mobile dengan satu alur utama yang selesai"
+      ]
+    },
+    {
+      "id": "business-analyst",
+      "title": "Business/System Analyst",
+      "specializationIds": [
+        "enterprise-digital"
+      ],
+      "skills": [
+        "requirements analysis",
+        "process modeling",
+        "stakeholder communication"
+      ],
+      "supportingCourseIds": [
+        "isp133",
+        "isp135",
+        "isp143",
+        "isp154"
+      ],
+      "internshipTitles": [
+        "Business Analyst Intern"
+      ],
+      "portfolioIdeas": [
+        "Dokumen kebutuhan dan model proses sebuah layanan"
+      ]
+    },
+    {
+      "id": "digital-product-analyst",
+      "title": "Digital Product Analyst",
+      "specializationIds": [
+        "enterprise-digital"
+      ],
+      "skills": [
+        "product thinking",
+        "analytics",
+        "communication"
+      ],
+      "supportingCourseIds": [
+        "isp145",
+        "isp147",
+        "isp151",
+        "esy156"
+      ],
+      "internshipTitles": [
+        "Product Management Intern"
+      ],
+      "portfolioIdeas": [
+        "Product brief, metric tree, dan prototype fitur"
+      ]
+    }
+  ]
+}
