@@ -14,7 +14,6 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import type { ReactNode } from 'react';
 import { useAppStore } from '@/stores/appStore';
 import { cn } from '@/lib/cn';
-import { Button } from '@/components/ui/button';
 import { ConfirmDialog } from '@/components/ui/dialog';
 import { AnimatedOutlet } from '@/components/app/PageTransitions';
 
@@ -71,6 +70,44 @@ function SidebarLink({ item, onNavigate }: { item: NavItem; onNavigate?: () => v
   );
 }
 
+function LogoutWithConfirm({
+  children,
+  className,
+  ariaLabel,
+}: {
+  children: ReactNode;
+  className: string;
+  ariaLabel: string;
+}) {
+  const resetApp = useAppStore((state) => state.resetApp);
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <button
+        type="button"
+        aria-label={ariaLabel}
+        onClick={() => setOpen(true)}
+        className={className}
+      >
+        {children}
+      </button>
+      <ConfirmDialog
+        open={open}
+        onOpenChange={setOpen}
+        title="Keluar dari sesi ini?"
+        description="Profil dan rencana pada perangkat ini dihapus. Anda kembali ke halaman awal untuk memulai ulang."
+        confirmLabel="Keluar"
+        destructive
+        onConfirm={() => {
+          resetApp();
+          navigate('/');
+        }}
+      />
+    </>
+  );
+}
+
 function DesktopSidebar() {
   const profile = useAppStore((state) => state.persisted.profile);
   return (
@@ -100,6 +137,13 @@ function DesktopSidebar() {
             {profile.name} · Semester {profile.currentSemester}
           </p>
         ) : null}
+        <LogoutWithConfirm
+          ariaLabel="Keluar dari sesi ini"
+          className="mt-1 flex w-full items-center gap-3 rounded-control px-3 py-2 text-sm font-medium text-muted transition-colors hover:bg-surface-subtle hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+        >
+          <LogOut className="h-4 w-4" aria-hidden="true" />
+          <span>Keluar dari sesi ini</span>
+        </LogoutWithConfirm>
       </div>
     </aside>
   );
@@ -107,9 +151,7 @@ function DesktopSidebar() {
 
 function MobileTopBar() {
   const profile = useAppStore((state) => state.persisted.profile);
-  const resetApp = useAppStore((state) => state.resetApp);
   const navigate = useNavigate();
-  const [confirmLogout, setConfirmLogout] = useState(false);
   if (!profile) return null;
 
   const initial = profile.name.trim().charAt(0).toUpperCase() || 'U';
@@ -138,27 +180,13 @@ function MobileTopBar() {
           </span>
           <span className="truncate">{profile.name}</span>
         </button>
-        <Button
-          variant="ghost"
-          size="sm"
-          aria-label="Keluar dari sesi ini"
-          onClick={() => setConfirmLogout(true)}
+        <LogoutWithConfirm
+          ariaLabel="Keluar dari sesi ini"
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-control text-muted hover:bg-surface-subtle hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
         >
           <LogOut className="h-4 w-4" aria-hidden="true" />
-        </Button>
+        </LogoutWithConfirm>
       </div>
-      <ConfirmDialog
-        open={confirmLogout}
-        onOpenChange={setConfirmLogout}
-        title="Keluar dari sesi ini?"
-        description="Profil dan rencana pada perangkat ini dihapus. Anda kembali ke halaman awal untuk memulai ulang."
-        confirmLabel="Keluar"
-        destructive
-        onConfirm={() => {
-          resetApp();
-          navigate('/');
-        }}
-      />
     </header>
   );
 }

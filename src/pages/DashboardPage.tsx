@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import {
   ArrowRight,
   Calculator,
@@ -135,15 +136,27 @@ export function DashboardPage() {
 
   return (
     <div className="mx-auto w-full max-w-content px-4 py-8 md:px-8">
-      <PageHeader
-        title={`Halo, ${profile.name}`}
-        description={`Semester ${profile.currentSemester} · IP ${formatPerformanceIndex(profile.performanceIndex)}`}
-        actions={
-          profile.isDemoPersona ? <Badge tone="info">Profil demo</Badge> : <Badge>Profil Anda</Badge>
-        }
-      />
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.28, ease: 'easeOut' }}
+      >
+        <PageHeader
+          title={`Halo, ${profile.name}`}
+          description={`Semester ${profile.currentSemester} · IP ${formatPerformanceIndex(profile.performanceIndex)}`}
+          actions={
+            profile.isDemoPersona ? <Badge tone="info">Profil demo</Badge> : <Badge>Profil Anda</Badge>
+          }
+        />
+      </motion.div>
 
-      <section aria-labelledby="posisi-label" className="card mt-6 p-5 md:p-6">
+      <motion.section
+        aria-labelledby="posisi-label"
+        className="card mt-6 p-5 md:p-6"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.28, ease: 'easeOut', delay: 0.05 }}
+      >
         <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
           <h2 id="posisi-label" className="text-base font-semibold text-ink">
             Posisi saat ini
@@ -181,9 +194,14 @@ export function DashboardPage() {
             {profile.completedCourseIds.length} mata kuliah total telah diselesaikan
           </p>
         </div>
-      </section>
+      </motion.section>
 
-      <div className="mt-6 grid gap-6 lg:grid-cols-3">
+      <motion.div
+        className="mt-6 grid gap-6 lg:grid-cols-3"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.28, ease: 'easeOut', delay: 0.1 }}
+      >
         <section
           aria-labelledby="tindakan-label"
           className="card-subtle p-5 lg:col-span-2 lg:row-span-2"
@@ -289,7 +307,7 @@ export function DashboardPage() {
             Buka Ringkasan PA
           </Link>
         </section>
-      </div>
+      </motion.div>
     </div>
   );
 }
