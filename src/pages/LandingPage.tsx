@@ -74,7 +74,7 @@ function HeroTrack() {
         <GraduationCap className="h-4 w-4 text-primary" />
         Contoh ilustrasi jalur Kang Haerin
       </div>
-      <ol className="flex flex-col">
+      <ol className="flex flex-col md:hidden">
         <li>
           <TrackRow semesters={[1, 2, 3, 4]} />
         </li>
@@ -84,6 +84,9 @@ function HeroTrack() {
         <li>
           <TrackRow semesters={[8, 7, 6, 5]} />
         </li>
+      </ol>
+      <ol className="hidden md:flex md:items-center">
+        <TrackRow semesters={[1, 2, 3, 4, 5, 6, 7, 8]} />
       </ol>
       <p className="mt-3 text-sm text-muted">
         Empat semester pertama selesai, Semester 5 sedang berjalan, sisanya direncanakan menuju 144
