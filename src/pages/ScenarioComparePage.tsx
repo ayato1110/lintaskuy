@@ -81,10 +81,14 @@ export function ScenarioComparePage() {
         }
       />
 
+      <p className="-mt-3 mb-6 text-sm text-muted">
+        Lihat perbedaan SKS, mata kuliah, beban, dan aktivitas di luar kuliah.
+      </p>
+
       <div className="overflow-x-auto rounded-card border border-border">
         <table className="w-full min-w-[640px] border-collapse text-sm">
           <caption className="sr-only">
-            Perbandingan skenario: semester, jalur, total SKS, beban, dan kepatuhan batas.
+            Perbandingan dua rencana: semester, jalur, total SKS, dan beban rencana.
           </caption>
           <thead>
             <tr className="bg-surface-subtle">
@@ -210,7 +214,7 @@ export function ScenarioComparePage() {
       <section aria-labelledby="hasil-heading" className="mt-8">
         <h2 id="hasil-heading" className="mb-3 flex items-center gap-2 text-base font-semibold text-ink">
           <GitCompareArrows className="h-4 w-4 text-muted" aria-hidden="true" />
-          Catatan untuk tiap rencana
+          Catatan setiap rencana
         </h2>
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           {selected.map((s) => (

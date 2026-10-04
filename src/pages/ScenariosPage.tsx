@@ -74,10 +74,12 @@ export function ScenariosPage() {
       ) : (
         <>
           <div className="card-subtle mb-5 flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-sm text-muted">
-              Beri tanda pada {compareIds.length} dari maksimal {MAX_COMPARE} skenario untuk
-              dibandingkan. Pilih dua rencana untuk membandingkannya.
-            </p>
+            <div className="flex flex-col gap-1">
+              <p className="text-sm text-muted">Pilih dua skenario yang ingin kamu bandingkan.</p>
+              <p className="text-xs font-medium text-ink" aria-live="polite">
+                {compareIds.length} dari {MAX_COMPARE} dipilih
+              </p>
+            </div>
             <Button
               variant={compareIds.length >= 2 ? 'primary' : 'outline'}
               disabled={compareIds.length < 2}
@@ -95,6 +97,7 @@ export function ScenariosPage() {
               const workload = assessWorkload(profile, scenario);
               const limitRule = validateCreditLimit(profile, scenario);
               const selected = compareIds.includes(scenario.id);
+              const compareLimitReached = compareIds.length >= MAX_COMPARE;
               return (
                 <li key={scenario.id} className="card flex flex-col gap-4 p-5">
                   <div className="flex flex-wrap items-start justify-between gap-3">
@@ -110,6 +113,7 @@ export function ScenariosPage() {
                     <Button
                       variant={selected ? 'secondary' : 'outline'}
                       size="sm"
+                      disabled={compareLimitReached && !selected}
                       onClick={() => toggleCompare(scenario.id)}
                       aria-pressed={selected}
                     >

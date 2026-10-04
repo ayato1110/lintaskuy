@@ -62,7 +62,7 @@ export function InternshipPage() {
     <div className="mx-auto w-full max-w-content px-4 py-8 md:px-8">
       <PageHeader
         title="Perencanaan Magang"
-        description={`Posisi Magang dibuka sesuai persyaratan: ${internship.minimumCredits} SKS dan seluruh nilai di atas C (${academicRules.internship.allCompletedGradesMustBeAbove}).`}
+        description="Periksa syarat dasar Magang, lalu catat posisi yang ingin kamu pertimbangkan."
       />
 
       <section aria-labelledby="status-magang-heading" className="card p-5 md:p-6">
@@ -112,8 +112,8 @@ export function InternshipPage() {
               </p>
               <p className="text-sm text-muted">
                 {internship.gradesAboveC
-                  ? 'Dinyatakan pada profil bahwa seluruh nilai sudah di atas C.'
-                  : 'Belum dinyatakan atau belum sesuai. Perbarui jawaban pada profil.'}
+                  ? 'Berdasarkan jawabanmu, seluruh nilai yang sudah ditempuh berada di atas C.'
+                  : 'Status nilai belum dikonfirmasi. Periksa kembali data pada profil.'}
               </p>
             </div>
           </li>
@@ -126,8 +126,8 @@ export function InternshipPage() {
               Syarat dasar sudah terpenuhi
             </h3>
             <p className="mt-1 text-sm text-muted">
-              Kamu sudah dapat membahas rencana Magang dengan dosen PA. Konfirmasi jadwal dan
-              persetujuan program studi dilakukan oleh pihak terkait.
+              Berdasarkan data yang kamu isi, syarat dasar Magang sudah terpenuhi. Konfirmasikan
+              kembali ke program studi atau dosen PA sebelum mendaftar.
             </p>
           </div>
         ) : (
@@ -144,7 +144,8 @@ export function InternshipPage() {
           Posisi yang diminati
         </h2>
         <p className="mt-1 text-sm text-muted">
-          Informasi ini dipakai pada Kompas Karier dan Ringkasan PA. Bukan jaminan penerimaan.
+          Pilihan ini membantu LINTAS menampilkan mata kuliah dan keterampilan yang relevan.
+          Hasilnya bukan jaminan diterima Magang.
         </p>
 
         <fieldset className="mt-4">
@@ -200,7 +201,7 @@ export function InternshipPage() {
             </span>
           ))}
           {targets.length === 0 ? (
-            <p className="text-sm text-muted">Belum ada posisi yang dipilih.</p>
+            <p className="text-sm text-muted">Pilih posisi yang ingin kamu pelajari lebih lanjut.</p>
           ) : null}
         </div>
       </section>
@@ -262,8 +263,8 @@ export function InternshipPage() {
               ))}
               {relatedRolesForTargets(targets).length === 0 ? (
                 <li className="text-sm text-muted">
-                  Judul kustom tidak terhubung ke peran standar. Tandai peran pada Kompas Karier
-                  untuk didiskusikan bersama PA.
+                  Posisi ini belum terhubung ke data peran LINTAS. Catat sebagai bahan diskusi
+                  dengan dosen PA.
                 </li>
               ) : null}
             </ul>

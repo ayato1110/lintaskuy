@@ -43,7 +43,7 @@ function buildActions(profile: StudentProfile, scenarios: Scenario[], primary: S
       title: `Menuju syarat Magang ${internship.minimumCredits} SKS`,
       body: internship.nextActions.join(' '),
       to: '/app/internship',
-      cta: 'Buka perencanaan Magang',
+      cta: 'Cek kesiapan Magang',
     });
   }
 
@@ -96,13 +96,13 @@ const quickLinks = [
   },
   {
     to: '/app/specializations',
-    label: 'Peminatan Explorer',
+    label: 'Peminatan',
     body: 'Mata kuliah dan peran karier',
     icon: Compass,
   },
   {
     to: '/app/scenarios',
-    label: 'Scenario Simulator',
+    label: 'Simulasi',
     body: 'Uji beban dan batas SKS',
     icon: Calculator,
   },

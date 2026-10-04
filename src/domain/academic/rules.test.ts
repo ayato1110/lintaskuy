@@ -81,6 +81,35 @@ describe('validateCreditLimit', () => {
     const result = validateCreditLimit(profile, scenario);
     expect(result.status).toBe('ok');
   });
+
+  it('menyebut batas sesuai profil ketika total di bawah batas', () => {
+    const profile = makeProfile({ performanceIndex: 3.67 });
+    const scenario = makeScenario({ selectedCourseIds: ['isp151', 'isp152', 'isp154'] });
+    const result = validateCreditLimit(profile, scenario);
+    expect(result.reason).toBe('Totalnya 9 SKS, masih aman di bawah batas 24 SKS.');
+    expect(result.nextAction).toContain('Indeks Prestasi 3,67');
+  });
+
+  it('menulis kalimat tepat pada batas ketika total sama dengan batas', () => {
+    const profile = makeProfile({ performanceIndex: 3.67 });
+    const scenario = makeScenario({
+      selectedCourseIds: ['isp151', 'isp152', 'isp153', 'isp154', 'isp155', 'isp156', 'esy155', 'esy156'],
+    });
+    const result = validateCreditLimit(profile, scenario);
+    expect(result.status).toBe('ok');
+    expect(result.reason).toBe('Totalnya 24 SKS, tepat pada batas semester ini.');
+  });
+
+  it('menyebut selisih ketika total melewati batas', () => {
+    const profile = makeProfile({ performanceIndex: 3.0 });
+    const scenario = makeScenario({
+      selectedCourseIds: ['isp151', 'isp152', 'isp153', 'isp154', 'isp155', 'isp156', 'esy155', 'esy156'],
+    });
+    const result = validateCreditLimit(profile, scenario);
+    expect(result.status).toBe('error');
+    expect(result.reason).toBe('Totalnya 24 SKS, melewati batas 21 SKS sebanyak 3 SKS.');
+    expect(result.nextAction).toBe('Kurangi atau pindahkan mata kuliah sampai totalnya kembali sesuai batas.');
+  });
 });
 
 describe('specialization lock', () => {
@@ -92,6 +121,11 @@ describe('specialization lock', () => {
   it('mengizinkan penguncian pada Semester 5', () => {
     const profile = makeProfile({ currentSemester: 5 });
     expect(validateLockAllowed(profile).status).toBe('ok');
+  });
+
+  it('menyebut mulai Semester 5 ketika penguncian tersedia', () => {
+    const result = validateLockAllowed(makeProfile({ currentSemester: 5 }));
+    expect(result.reason).toBe('Kamu sudah dapat mengunci satu peminatan mulai Semester 5.');
   });
 });
 
@@ -109,7 +143,9 @@ describe('mixed track detection', () => {
       selectedCourseIds: ['esy155', 'esy156'],
       specializationId: 'enterprise-digital',
     });
-    expect(validateScenarioTrack(scenario).status).toBe('ok');
+    const result = validateScenarioTrack(scenario);
+    expect(result.status).toBe('ok');
+    expect(result.reason).toBe('Semua mata kuliah peminatan berasal dari jalur yang sama.');
   });
 });
 
@@ -194,6 +230,8 @@ describe('workload', () => {
     });
     const assessment = assessWorkload(profile, scenario);
     expect(assessment.reasons.length).toBeGreaterThan(0);
+    expect(assessment.reasons[0]).toBe('Total beban kuliah mencapai 24 SKS.');
+    expect(assessment.reasons).toContain('Aktivitas di luar kuliah mencapai 6 jam per minggu.');
     expect(['Ringan', 'Seimbang', 'Tinggi', 'Sangat Tinggi']).toContain(assessment.category);
     expect(assessment.points).toBeGreaterThanOrEqual(0);
   });

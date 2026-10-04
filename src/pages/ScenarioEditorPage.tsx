@@ -18,8 +18,9 @@ import {
 } from '@/lib/data-repo';
 import { useAppStore } from '@/stores/appStore';
 import type { Scenario, WeeklyCommitment } from '@/domain/types';
-import { displaySKS } from '@/lib/format';
+import { displaySKS, formatPerformanceIndex } from '@/lib/format';
 import { cn } from '@/lib/cn';
+import { getCreditLimit } from '@/domain/academic/rules';
 
 const semesterOptions: SelectOption[] = Array.from({ length: 8 }, (_, index) => ({
   value: String(index + 1),
@@ -281,16 +282,18 @@ export function ScenarioEditorPage() {
             </p>
             <p className="mt-3 text-sm text-ink">
               Total rencana: <span className="tabular font-semibold">{displaySKS(totalCredits)}</span>
-              {' · '}batas {academicRules.creditLimit.greaterLimit} SKS (IP di atas{' '}
-              {academicRules.creditLimit.whenPerformanceIndexGreaterThan.toFixed(2)})
+              {' · '}batas {displaySKS(getCreditLimit(profile.performanceIndex))}
+            </p>
+            <p className="mt-1 text-xs text-muted">
+              Batas mengikuti {academicRules.creditLimit.label} {formatPerformanceIndex(profile.performanceIndex)} yang tersimpan di profil.
             </p>
 
             {spec ? (
               <div className="card-subtle mt-4 p-4">
                 <h3 className="mb-1 text-sm font-semibold text-ink">Mata kuliah peminatan {spec.name}</h3>
                 <p className="mb-3 text-xs text-muted">
-                  Empat mata kuliah peminatan ini menandai arah jalur pada rencana, dikelompokkan
-                  menurut semester asalnya.
+                  Jalur ini terdiri dari empat mata kuliah: dua di Semester 5 dan dua di Semester
+                  6. Untuk skenario ini, pilih mata kuliah yang tersedia pada semester target.
                 </p>
                 {specSemesterGroups.map(([semester, items]) => (
                   <div key={semester} className="mb-4 last:mb-0">
@@ -354,7 +357,8 @@ export function ScenarioEditorPage() {
               Komitmen mingguan
             </h2>
             <p className="mb-3 text-sm text-muted">
-              Jam di luar kuliah ikut menentukan beban. Kosongkan semua untuk memperhitungkan kuliah saja.
+              Tambahkan aktivitas di luar kuliah agar perkiraan beban lebih sesuai dengan
+              keseharianmu. Kosongkan jika tidak ada.
             </p>
             <div className="flex flex-col gap-3">
               {commitments.map((commitment) => (

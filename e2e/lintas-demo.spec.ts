@@ -43,6 +43,10 @@ test('Kang Haerin - alur perjalanan penuh', async ({ page }) => {
     .first();
   await uncheckedCourse.check();
   await expect(page.getByText('Catatan untuk rencana ini')).toBeVisible();
+  await expect(page.getByText(/Total rencana:.*batas 24 SKS/)).toBeVisible();
+  await expect(
+    page.getByText(/Batas mengikuti Indeks Prestasi 3,67 yang tersimpan di profil/),
+  ).toBeVisible();
   await page.getByRole('button', { name: 'Simpan perubahan' }).click();
   await expect(page.getByRole('heading', { name: 'Scenario Simulator' })).toBeVisible();
 });
@@ -53,13 +57,52 @@ test('Bandingkan dua skenario demo', async ({ page }) => {
   await page.getByRole('link', { name: 'Simulasi', exact: true }).click();
 
   const addToCompare = page.getByRole('button', { name: 'Pilih untuk dibandingkan' });
+  await expect(page.getByText('0 dari 2 dipilih')).toBeVisible();
   await addToCompare.first().click();
+  await expect(page.getByText('1 dari 2 dipilih')).toBeVisible();
   await page.getByRole('button', { name: 'Pilih untuk dibandingkan' }).click();
+  await expect(page.getByText('2 dari 2 dipilih')).toBeVisible();
   await page.getByRole('button', { name: /Bandingkan \(2\)/ }).click();
 
   await expect(page.getByRole('heading', { name: 'Compare Scenarios' })).toBeVisible();
   await expect(page.getByText('Matriks mata kuliah')).toBeVisible();
-  await expect(page.getByText('Catatan untuk tiap rencana')).toBeVisible();
+  await expect(page.getByText('Catatan setiap rencana')).toBeVisible();
+});
+
+test('Tombol skenario ketiga dinonaktifkan ketika dua sudah dipilih', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('button', { name: DEMO_CTA }).click();
+  await page.getByRole('link', { name: 'Simulasi', exact: true }).click();
+
+  await page.getByRole('button', { name: 'Duplikasi', exact: true }).first().click();
+  await expect(page.getByRole('button', { name: 'Pilih untuk dibandingkan' })).toHaveCount(3);
+
+  const compareButtons = page.getByRole('button', { name: 'Pilih untuk dibandingkan' });
+  await compareButtons.nth(0).click();
+  await compareButtons.nth(1).click();
+  await expect(page.getByText('2 dari 2 dipilih')).toBeVisible();
+
+  const third = page.getByRole('button', { name: 'Pilih untuk dibandingkan' });
+  await expect(third).toBeDisabled();
+  await expect(third).toHaveAttribute('aria-pressed', 'false');
+});
+
+test('Batas SKS menyesuaikan Indeks Prestasi yang diubah', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('button', { name: DEMO_CTA }).click();
+
+  await page.getByRole('link', { name: /Profil/ }).click();
+  await expect(page.getByRole('heading', { name: 'Profil dan data' })).toBeVisible();
+  await page.locator('#settings-ip').fill('3.00');
+  await page.getByRole('button', { name: 'Simpan perubahan semester atau IP' }).click();
+
+  await page.getByRole('link', { name: 'Simulasi', exact: true }).click();
+  await page.getByRole('link', { name: 'Buka dan ubah', exact: true }).first().click();
+  await expect(page.getByRole('heading', { name: 'Ubah skenario' })).toBeVisible();
+  await expect(page.getByText(/Total rencana:.*batas 21 SKS/)).toBeVisible();
+  await expect(
+    page.getByText(/Batas mengikuti Indeks Prestasi 3,00 yang tersimpan di profil/),
+  ).toBeVisible();
 });
 
 test('Ringkasan PA, tulis pertanyaan, dan cetak via print', async ({ page }) => {

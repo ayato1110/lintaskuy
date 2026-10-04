@@ -47,21 +47,25 @@ export function validateCreditLimit(profile: StudentProfile, scenario: Scenario)
   const limit = getCreditLimit(profile.performanceIndex);
 
   if (total <= limit) {
+    const reason =
+      total === limit
+        ? `Totalnya ${total} SKS, tepat pada batas semester ini.`
+        : `Totalnya ${total} SKS, masih aman di bawah batas ${limit} SKS.`;
     return {
       status: 'ok',
       title: 'Total SKS sesuai batas',
-      reason: `Rencana ini memuat ${total} SKS dan masih dalam batas ${limit} SKS untuk ${academicRules.creditLimit.label} ${profile.performanceIndex.toLocaleString('id-ID')}.`,
+      reason,
       source: academicRules.creditLimit.source,
-      nextAction: 'Rencana ini masih di dalam batas SKS.',
+      nextAction: `Batas ini mengikuti ${academicRules.creditLimit.label} ${profile.performanceIndex.toLocaleString('id-ID')} yang tersimpan di profil.`,
     };
   }
 
   return {
     status: 'error',
     title: `Melebihi batas SKS`,
-    reason: `Rencana ini memuat ${total} SKS, sedangkan batas untuk ${academicRules.creditLimit.label} ${profile.performanceIndex.toLocaleString('id-ID')} adalah ${limit} SKS.`,
+    reason: `Totalnya ${total} SKS, melewati batas ${limit} SKS sebanyak ${total - limit} SKS.`,
     source: academicRules.creditLimit.source,
-    nextAction: `Hapus atau pindahkan setidaknya satu mata kuliah agar total mencapai ${limit} SKS atau kurang.`,
+    nextAction: `Kurangi atau pindahkan mata kuliah sampai totalnya kembali sesuai batas.`,
   };
 }
 
@@ -124,9 +128,9 @@ export function validateScenarioTrack(scenario: Scenario): RuleResult {
   return {
     status: 'ok',
     title: 'Jalur konsisten',
-    reason: 'Skenario hanya memuat satu peminatan dan cocok dengan jalur yang dicantumkan.',
+    reason: 'Semua mata kuliah peminatan berasal dari jalur yang sama.',
     source: academicRules.specialization.source,
-    nextAction: 'Lanjutkan dengan jalur yang sudah konsisten ini.',
+    nextAction: '',
   };
 }
 
@@ -155,9 +159,9 @@ export function validateLockedTrackMatch(profile: StudentProfile, scenario: Scen
   return {
     status: 'ok',
     title: 'Skenario sesuai peminatan terkunci',
-    reason: 'Jalur pada skenario sama dengan peminatan yang telah dikunci.',
+    reason: 'Jalur pada rencana ini sudah sesuai dengan peminatan yang dikunci.',
     source: academicRules.specialization.source,
-    nextAction: 'Tidak ada pembetulan yang diperlukan.',
+    nextAction: '',
   };
 }
 
@@ -175,7 +179,7 @@ export function validateLockAllowed(profile: StudentProfile): RuleResult {
   return {
     status: 'ok',
     title: 'Penguncian tersedia',
-    reason: `Semester ${profile.currentSemester} sudah memenuhi syarat untuk mengunci satu peminatan.`,
+    reason: `Kamu sudah dapat mengunci satu peminatan mulai Semester ${lockFrom}.`,
     source: academicRules.specialization.source,
     nextAction: 'Pilih satu jalur dan kunci setelah membandingkan.',
   };
@@ -231,9 +235,9 @@ export function validateSelectedSameSemester(scenario: Scenario): RuleResult {
     return {
       status: 'ok',
       title: 'Semua mata kuliah sesuai semester',
-      reason: `Rencana ini disusun untuk Semester ${scenario.targetSemester}.`,
+      reason: `Semua mata kuliah berada di Semester ${scenario.targetSemester}.`,
       source: 'curriculum_source',
-      nextAction: 'Seluruh mata kuliah berada di semester yang sesuai.',
+      nextAction: '',
     };
   }
   return {
@@ -275,12 +279,12 @@ export function assessWorkload(_profile: StudentProfile, scenario: Scenario): Wo
   else category = 'Sangat Tinggi';
 
   const reasons: string[] = [];
-  reasons.push(`${totalCredits} SKS total beban kuliah.`);
+  reasons.push(`Total beban kuliah mencapai ${totalCredits} SKS.`);
   if (projectCount > 0) {
-    reasons.push(`${projectCount} mata kuliah berbasis proyek.`);
+    reasons.push(`Rencana ini memuat ${projectCount} mata kuliah berbasis proyek.`);
   }
   if (totalHours > 0) {
-    reasons.push(`Komitmen mingguan ${totalHours} jam di luar kuliah.`);
+    reasons.push(`Aktivitas di luar kuliah mencapai ${totalHours} jam per minggu.`);
   }
   if (hasActiveInternship) {
     reasons.push('Magang aktif pada semester ini.');

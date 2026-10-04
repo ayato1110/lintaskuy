@@ -15,18 +15,18 @@ import { useAppStore } from '@/stores/appStore';
 const benefits = [
   {
     icon: Map,
-    title: 'Pahami posisimu',
-    body: 'Kurikulum 144 SKS disusun menjadi perjalanan Semester 1 sampai 8. Lihat mata kuliah yang selesai, sedang berjalan, dan yang tersedia berikutnya.',
+    title: 'Lihat kamu sudah sampai mana',
+    body: 'Pantau mata kuliah yang sudah selesai, yang sedang ditempuh, dan apa saja yang masih tersisa menuju 144 SKS.',
   },
   {
     icon: GitCompareArrows,
-    title: 'Bandingkan pilihan',
-    body: 'Tiga peminatan dilihat berdampingan, dari mata kuliah hingga peran karier dan posisi Magang. Keputusan tidak perlu mengikuti tren atau teman.',
+    title: 'Pilih jalur dengan alasan yang jelas',
+    body: 'Bandingkan mata kuliah di setiap peminatan, cara belajarnya, dan kaitannya dengan Magang maupun arah kariermu.',
   },
   {
     icon: ClipboardList,
-    title: 'Siapkan konsultasi',
-    body: 'Uji beberapa rencana semester, pilih satu sebagai rencana utama, lalu bawa ringkasan ringkas saat berkonsultasi dengan dosen pembimbing.',
+    title: 'Datang ke dosen PA dengan rencana',
+    body: 'Coba beberapa susunan mata kuliah, lihat bebannya, lalu bawa pilihan yang paling masuk akal untuk didiskusikan.',
   },
 ];
 
@@ -107,13 +107,13 @@ export function LandingPage() {
       <main>
         <section className="mx-auto grid w-full max-w-content gap-10 px-4 py-10 md:grid-cols-2 md:items-center md:px-8 md:py-16">
           <div>
-            <p className="text-sm font-medium text-primary">Perencanaan akademik mahasiswa Sistem Informasi</p>
+            <p className="text-sm font-medium text-primary">Portal perencanaan kuliah berbasis skenario</p>
             <h1 className="mt-2 text-display-mobile font-semibold leading-tight text-ink md:text-display">
               Rencanakan kuliah, pahami konsekuensinya.
             </h1>
             <p className="mt-4 max-w-xl text-lg text-muted">
-              Lihat perjalanan menuju 144 SKS, bandingkan peminatan, uji rencana semester, dan
-              siapkan konsultasi dalam satu tempat.
+              Lihat posisi akademikmu, bandingkan peminatan, lalu coba beberapa rencana semester
+              sebelum mengisi KRS atau bertemu dosen PA.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Button
@@ -131,7 +131,8 @@ export function LandingPage() {
               </Button>
             </div>
             <p className="mt-4 flex items-center gap-1.5 text-sm text-muted">
-              Kurikulum 144 SKS, tiga peminatan, dan pemetaan karier tersedia untuk dijelajahi.
+              Dibuat berdasarkan kurikulum Sistem Informasi UNJA: 144 SKS, tiga jalur peminatan,
+              dan perjalanan studi hingga Semester 8.
             </p>
           </div>
           <HeroTrack />
@@ -159,29 +160,29 @@ export function LandingPage() {
           <div className="max-w-xl">
             <h2 className="text-2xl font-semibold text-ink">Cara kerjanya</h2>
             <p className="mt-2 text-base text-muted">
-              LINTAS menjawab tiga pertanyaan pada setiap layar: posisimu di mana sekarang, pilihan
-              apa saja yang tersedia, dan apa konsekuensi serta tindakan berikutnya.
+              Setiap bagian LINTAS membantu kamu menjawab tiga hal: sekarang ada di posisi mana,
+              pilihan apa yang tersedia, dan apa dampaknya kalau pilihan itu diambil.
             </p>
             <div className="mt-6 flex flex-col gap-3">
               <div className="flex items-start gap-3">
                 <Route className="mt-0.5 h-5 w-5 shrink-0 text-teal" aria-hidden="true" />
                 <p className="text-sm text-muted">
-                  Jalur ditampilkan sebagai peta semester. Setiap status mata kuliah menyertakan
-                  alasan, bukan hanya warna.
+                  Ikuti perjalanan Semester 1 sampai 8 dan pahami alasan di balik setiap status
+                  mata kuliah.
                 </p>
               </div>
               <div className="flex items-start gap-3">
                 <GitCompareArrows className="mt-0.5 h-5 w-5 shrink-0 text-teal" aria-hidden="true" />
                 <p className="text-sm text-muted">
-                  Peminatan dan karier dipetakan ke kompetensi dan Magang dengan informasi yang jelas,
-                  tanpa skor kecocokan.
+                  Lihat hubungan antara peminatan, mata kuliah, keterampilan, dan pilihan Magang
+                  tanpa persentase kecocokan yang dibuat-buat.
                 </p>
               </div>
               <div className="flex items-start gap-3">
                 <ClipboardList className="mt-0.5 h-5 w-5 shrink-0 text-teal" aria-hidden="true" />
                 <p className="text-sm text-muted">
-                  Rencana semester diuji terhadap batas SKS, prasyarat, dan beban sebelum dibawa ke
-                  dosen pembimbing.
+                  Sebelum disimpan, rencana diperiksa dari sisi batas SKS, prasyarat, dan
+                  kesibukanmu di luar kuliah.
                 </p>
               </div>
             </div>
