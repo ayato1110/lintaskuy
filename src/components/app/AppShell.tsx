@@ -96,7 +96,7 @@ function LogoutWithConfirm({
         open={open}
         onOpenChange={setOpen}
         title="Keluar dari sesi ini?"
-        description="Profil dan rencana pada perangkat ini dihapus. Anda kembali ke halaman awal untuk memulai ulang."
+        description="Profil dan rencana pada perangkat ini dihapus. Kamu kembali ke halaman awal untuk memulai ulang."
         confirmLabel="Keluar"
         destructive
         onConfirm={() => {

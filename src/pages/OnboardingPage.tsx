@@ -58,7 +58,7 @@ export function OnboardingPage() {
   function validateStep(current: number): boolean {
     const nextErrors: Record<string, string> = {};
     if (current === 1) {
-      if (!semester) nextErrors.semester = 'Pilih semester aktif Anda saat ini.';
+      if (!semester) nextErrors.semester = 'Pilih semester aktif kamu saat ini.';
       const ip = Number(performanceIndex.replace(',', '.'));
       if (!performanceIndex || Number.isNaN(ip) || ip < 0 || ip > 4) {
         nextErrors.performanceIndex = 'Indeks Prestasi harus berupa angka antara 0 dan 4.';
@@ -297,7 +297,7 @@ export function OnboardingPage() {
                     { value: 'false', label: 'Tidak / belum yakin' },
                   ]}
                   error={errors.gradesAboveC}
-                  hint="Jawaban mengikuti informasi yang Anda berikan dan perlu dikonfirmasi ke program studi saat persiapan Magang."
+                  hint="Jawaban mengikuti informasi yang kamu berikan dan perlu dikonfirmasi ke program studi saat persiapan Magang."
                 />
               </div>
             </div>
@@ -437,7 +437,7 @@ export function OnboardingPage() {
                 <h2 id="target-label" className="mb-2 text-sm font-semibold text-ink">
                   Posisi Magang yang diminati
                 </h2>
-                <FieldShell id="intern-targets" label="Pilih satu atau lebih" hint="Pilihan ini menentukan daftar posisi Magang yang didukung rencana Anda.">
+                <FieldShell id="intern-targets" label="Pilih satu atau lebih" hint="Pilihan ini menentukan daftar posisi Magang yang didukung rencana kamu.">
                   <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
                     {internshipTitleOptions.map((option) => (
                       <CheckboxField

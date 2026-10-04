@@ -31,7 +31,7 @@ export function CareerPage() {
       <InlineAlert
         tone="info"
         title="Sumber informasi karier"
-        reason="Setiap peran dihubungkan ke kompetensi, mata kuliah, peminatan, dan posisi Magang. Informasi tidak menggunakan skor kecocokan."
+        reason="Informasi karier dipakai sebagai konteks untuk memilih peminatan dan menyiapkan Magang, bukan sebagai jaminan pekerjaan."
       />
 
       <div className="mt-4 grid auto-rows-fr grid-cols-1 gap-6 lg:grid-cols-2">

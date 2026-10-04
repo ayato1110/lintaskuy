@@ -25,7 +25,6 @@ export function WorkloadBar({ workload }: { workload: WorkloadAssessment }) {
           <Weight className="h-4 w-4" aria-hidden="true" />
           {meta.label}
         </span>
-        <span className="text-sm tabular text-muted">({workload.points} poin, {workload.category})</span>
         <Badge tone={meta.tone}>{workload.category}</Badge>
       </div>
       <ul className="flex flex-col gap-1 text-sm text-muted">
@@ -62,8 +61,8 @@ export function ScenarioPanel({
   if (scenario.selectedCourseIds.length === 0) {
     return (
       <SummaryTip icon={ShieldCheck}>
-        Belum ada mata kuliah di dalam rencana ini. Pilih mata kuliah pada daftar untuk melihat hasil
-        pemeriksaan.
+        Belum ada mata kuliah di dalam rencana ini. Pilih mata kuliah pada daftar untuk melihat catatan
+        dan beban semester.
       </SummaryTip>
     );
   }
@@ -80,11 +79,11 @@ export function ScenarioPanel({
             </p>
           </div>
           <div className="card-subtle p-3">
-            <p className="text-xs text-muted">Mata kuliah berproyek</p>
+            <p className="text-xs text-muted">Mata kuliah berbasis proyek</p>
             <p className="mt-1 text-lg font-semibold tabular text-ink">{projectCount}</p>
           </div>
           <div className="card-subtle p-3">
-            <p className="text-xs text-muted">Sumber aturan</p>
+            <p className="text-xs text-muted">Dasar pemeriksaan</p>
             <p className="mt-1 text-sm font-medium text-ink">Kurikulum dan aturan akademik</p>
             <p className="text-xs text-muted">Berdasarkan kurikulum program studi.</p>
           </div>

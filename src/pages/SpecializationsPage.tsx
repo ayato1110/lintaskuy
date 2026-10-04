@@ -78,7 +78,7 @@ function SpecializationCard({ spec }: { spec: Specialization }) {
 
       <div className="mt-4">
         <p className="mb-2 text-sm font-medium text-ink">
-          Mata kuliah jalur ({academicRules.specialization.coursesPerTrack} mata kuliah, {academicRules.specialization.creditsPerTrack} SKS)
+          Mata kuliah peminatan ({academicRules.specialization.coursesPerTrack} mata kuliah, {academicRules.specialization.creditsPerTrack} SKS)
         </p>
         <SpecCourses specId={spec.id} />
       </div>
@@ -123,7 +123,7 @@ function SpecializationCard({ spec }: { spec: Specialization }) {
         open={confirmLock}
         onOpenChange={setConfirmLock}
         title={`Kunci ${spec.name}?`}
-        description="Setelah dikunci, jalur ini menjadi pilihan utama pada profil Anda. Perbandingan dengan jalur lain tetap bisa dilakukan lewat scenario simulator."
+        description="Setelah dikunci, jalur ini menjadi pilihan utama pada profilmu. Perbandingan dengan jalur lain tetap bisa dilakukan lewat scenario simulator."
         confirmLabel="Kunci jalur"
         onConfirm={() => lockSpecialization(spec.id)}
       />
@@ -131,7 +131,7 @@ function SpecializationCard({ spec }: { spec: Specialization }) {
         open={confirmUnlock}
         onOpenChange={setConfirmUnlock}
         title="Buka kunci peminatan?"
-        description="Profil kembali tanpa pilihan terkunci. Anda tetap bisa membatalkan dan membandingkan lagi."
+        description="Profil kembali tanpa pilihan terkunci. Kamu tetap bisa membatalkan dan membandingkan lagi."
         confirmLabel="Buka kunci"
         onConfirm={() => unlockSpecialization()}
       />
@@ -150,7 +150,7 @@ export function SpecializationsPage() {
     <div className="mx-auto w-full max-w-content px-4 py-8 md:px-8">
       <PageHeader
         title="Peminatan Explorer"
-        description={`Bandingkan ${specializations.length} peminatan Sistem Informasi dan pilih arah yang paling masuk akal untuk Anda.`}
+        description={`Bandingkan ${specializations.length} peminatan Sistem Informasi dan pilih arah yang paling masuk akal untukmu.`}
       />
 
       <Tabs defaultValue="specializations">
@@ -191,7 +191,7 @@ export function SpecializationsPage() {
           <InlineAlert
             tone="info"
             title="Sumber informasi karier"
-            reason="Setiap peran dihubungkan ke kompetensi, mata kuliah, peminatan, dan posisi Magang. Informasi tidak menggunakan skor kecocokan."
+            reason="Informasi karier dipakai sebagai konteks untuk memilih peminatan dan menyiapkan Magang, bukan sebagai jaminan pekerjaan."
           />
           <div className="mt-4 grid auto-rows-fr grid-cols-1 gap-6 lg:grid-cols-2">
             {careerRoles.map((role) => (

@@ -99,6 +99,15 @@ export function ScenarioEditorPage() {
       .filter((course) => !profile?.completedCourseIds.includes(course.id));
   }, [spec, profile?.completedCourseIds]);
 
+  const specSemesterGroups = useMemo(() => {
+    const bySemester = new Map<number, typeof specCourses>();
+    for (const course of specCourses) {
+      if (!bySemester.has(course.semester)) bySemester.set(course.semester, []);
+      bySemester.get(course.semester)!.push(course);
+    }
+    return [...bySemester.entries()].sort((a, b) => a[0] - b[0]);
+  }, [specCourses]);
+
   if (!profile) return <Navigate to="/onboarding" replace />;
 
   if (!isNew && !existing) {
@@ -210,7 +219,7 @@ export function ScenarioEditorPage() {
         <div className="flex flex-col gap-6 lg:col-span-2">
           <section className="card p-5" aria-labelledby="skenario-dasar-heading">
             <h2 id="skenario-dasar-heading" className="mb-4 text-base font-semibold text-ink">
-              Skenario dasar
+              Detail rencana
             </h2>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <TextInput
@@ -268,41 +277,48 @@ export function ScenarioEditorPage() {
             </h2>
             <p className="mt-1 text-sm text-muted">
               Mata kuliah yang sudah selesai tidak dapat dipilih lagi. Pilihan dari semester lain
-              menimbulkan peringatan pada hasil pemeriksaan.
+              menimbulkan peringatan pada catatan rencana.
             </p>
             <p className="mt-3 text-sm text-ink">
-              Total terpilih: <span className="tabular font-semibold">{displaySKS(totalCredits)}</span>
+              Total rencana: <span className="tabular font-semibold">{displaySKS(totalCredits)}</span>
               {' · '}batas {academicRules.creditLimit.greaterLimit} SKS (IP di atas{' '}
               {academicRules.creditLimit.whenPerformanceIndexGreaterThan.toFixed(2)})
             </p>
 
             {spec ? (
               <div className="card-subtle mt-4 p-4">
-                <h3 className="mb-1 text-sm font-semibold text-ink">Mata kuliah jalur {spec.name}</h3>
+                <h3 className="mb-1 text-sm font-semibold text-ink">Mata kuliah peminatan {spec.name}</h3>
                 <p className="mb-3 text-xs text-muted">
-                  Empat mata kuliah peminatan ini menandai arah jalur pada rencana.
+                  Empat mata kuliah peminatan ini menandai arah jalur pada rencana, dikelompokkan
+                  menurut semester asalnya.
                 </p>
-                <ul className="flex flex-col gap-2">
-                  {specCourses.map((course) => {
-                    const belongsToTarget = course.semester === targetSemester;
-                    const inTargetGroup = !belongsToTarget;
-                    return (
-                      <li key={course.id}>
-                        <CheckboxField
-                          id={`scen-spec-${course.id}`}
-                          label={`${course.name}, ${course.credits} SKS`}
-                          hint={
-                            inTargetGroup
-                              ? `Berasal dari Semester ${course.semester}, bukan Semester ${targetSemester}.`
-                              : 'Berada pada semester target.'
-                          }
-                          checked={selectedIds.includes(course.id)}
-                          onCheckedChange={() => toggleCourse(course.id)}
-                        />
-                      </li>
-                    );
-                  })}
-                </ul>
+                {specSemesterGroups.map(([semester, items]) => (
+                  <div key={semester} className="mb-4 last:mb-0">
+                    <h4 className="mb-2 text-xs font-medium text-muted">
+                      Semester {semester}
+                      {semester === targetSemester ? (
+                        <span className="ml-2 text-primary">semester target</span>
+                      ) : null}
+                    </h4>
+                    <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                      {items.map((course) => (
+                        <li key={course.id}>
+                          <CheckboxField
+                            id={`scen-spec-${course.id}`}
+                            label={`${course.name}, ${course.credits} SKS`}
+                            hint={
+                              course.semester !== targetSemester
+                                ? `Berasal dari Semester ${course.semester}, bukan Semester ${targetSemester}.`
+                                : 'Berada pada semester target.'
+                            }
+                            checked={selectedIds.includes(course.id)}
+                            onCheckedChange={() => toggleCourse(course.id)}
+                          />
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
               </div>
             ) : null}
 
@@ -394,7 +410,7 @@ export function ScenarioEditorPage() {
                 </div>
               ))}
               {commitments.length === 0 ? (
-                <p className="text-sm text-muted">Belum ada komitmen mingguan ditambahkan.</p>
+                <p className="text-sm text-muted">Belum ada aktivitas di luar kuliah.</p>
               ) : null}
               <div>
                 <Button
@@ -425,7 +441,7 @@ export function ScenarioEditorPage() {
               </Button>
               <Button variant="outline" onClick={handleReset}>
                 <RotateCcw className="h-4 w-4" aria-hidden="true" />
-                Kembalikan
+                Urungkan perubahan
               </Button>
             </div>
             {!isNew ? (

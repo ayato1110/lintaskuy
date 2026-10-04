@@ -15,7 +15,7 @@ import { useAppStore } from '@/stores/appStore';
 const benefits = [
   {
     icon: Map,
-    title: 'Pahami posisi Anda',
+    title: 'Pahami posisimu',
     body: 'Kurikulum 144 SKS disusun menjadi perjalanan Semester 1 sampai 8. Lihat mata kuliah yang selesai, sedang berjalan, dan yang tersedia berikutnya.',
   },
   {
@@ -107,8 +107,9 @@ export function LandingPage() {
       <main>
         <section className="mx-auto grid w-full max-w-content gap-10 px-4 py-10 md:grid-cols-2 md:items-center md:px-8 md:py-16">
           <div>
-            <h1 className="text-display-mobile font-semibold leading-tight text-ink md:text-display">
-              Rencanakan kuliah tanpa menebak-nebak.
+            <p className="text-sm font-medium text-primary">Perencanaan akademik mahasiswa Sistem Informasi</p>
+            <h1 className="mt-2 text-display-mobile font-semibold leading-tight text-ink md:text-display">
+              Rencanakan kuliah, pahami konsekuensinya.
             </h1>
             <p className="mt-4 max-w-xl text-lg text-muted">
               Lihat perjalanan menuju 144 SKS, bandingkan peminatan, uji rencana semester, dan
@@ -122,11 +123,11 @@ export function LandingPage() {
                   navigate('/app');
                 }}
               >
-                Gunakan Profil Demo
+                Coba Profil Kang Haerin
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
               <Button variant="outline" size="lg" onClick={() => navigate('/onboarding')}>
-                Isi Profil Sendiri
+                Isi Profil Saya
               </Button>
             </div>
             <p className="mt-4 flex items-center gap-1.5 text-sm text-muted">
@@ -158,7 +159,7 @@ export function LandingPage() {
           <div className="max-w-xl">
             <h2 className="text-2xl font-semibold text-ink">Cara kerjanya</h2>
             <p className="mt-2 text-base text-muted">
-              LINTAS menjawab tiga pertanyaan pada setiap layar: posisi Anda di mana sekarang, pilihan
+              LINTAS menjawab tiga pertanyaan pada setiap layar: posisimu di mana sekarang, pilihan
               apa saja yang tersedia, dan apa konsekuensi serta tindakan berikutnya.
             </p>
             <div className="mt-6 flex flex-col gap-3">

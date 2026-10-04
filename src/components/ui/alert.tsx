@@ -95,7 +95,7 @@ export function RuleOverview({ results, icon = BellRing }: { results: RuleResult
     <div>
       <p className="mb-2 flex items-center gap-2 text-sm font-semibold text-ink">
         <Icon className="h-4 w-4 text-muted" aria-hidden="true" />
-        Hasil pemeriksaan
+        Catatan untuk rencana ini
       </p>
       <div className="flex flex-col gap-2">
         {results.map((result) => (

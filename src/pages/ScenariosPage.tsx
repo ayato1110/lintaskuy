@@ -15,7 +15,7 @@ import type { Scenario } from '@/domain/types';
 import { displaySKS } from '@/lib/format';
 import { cn } from '@/lib/cn';
 
-const MAX_COMPARE = 3;
+const MAX_COMPARE = 2;
 
 export function ScenariosPage() {
   const navigate = useNavigate();
@@ -52,7 +52,7 @@ export function ScenariosPage() {
     <div className="mx-auto w-full max-w-content px-4 py-8 md:px-8">
       <PageHeader
         title="Scenario Simulator"
-        description="Simulasikan kombinasi mata kuliah, pilih dua hingga tiga rencana untuk dibandingkan, lalu jadikan satu sebagai rencana utama."
+        description="Simulasikan kombinasi mata kuliah, pilih dua rencana untuk dibandingkan, lalu jadikan satu sebagai rencana utama."
         actions={
           <Link to="/app/scenarios/new">
             <Button>
@@ -76,7 +76,7 @@ export function ScenariosPage() {
           <div className="card-subtle mb-5 flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm text-muted">
               Beri tanda pada {compareIds.length} dari maksimal {MAX_COMPARE} skenario untuk
-              dibandingkan.
+              dibandingkan. Pilih dua rencana untuk membandingkannya.
             </p>
             <Button
               variant={compareIds.length >= 2 ? 'primary' : 'outline'}
@@ -114,7 +114,7 @@ export function ScenariosPage() {
                       aria-pressed={selected}
                     >
                       <CheckSquare className="h-4 w-4" aria-hidden="true" />
-                      {selected ? 'Dipilih banding' : 'Pilih banding'}
+                      {selected ? 'Sudah dipilih' : 'Pilih untuk dibandingkan'}
                     </Button>
                   </div>
 
@@ -149,11 +149,11 @@ export function ScenariosPage() {
                       onClick={() => setPrimaryScenario(isPrimary ? null : scenario.id)}
                     >
                       <Star className="h-4 w-4" aria-hidden="true" />
-                      {isPrimary ? 'Lepas sebagai utama' : 'Jadikan rencana utama'}
+                      {isPrimary ? 'Batalkan sebagai rencana utama' : 'Jadikan rencana utama'}
                     </Button>
                     <Button size="sm" variant="ghost" onClick={() => duplicateScenario(scenario.id)}>
                       <Copy className="h-4 w-4" aria-hidden="true" />
-                      Buat salinan
+                      Duplikasi
                     </Button>
                     <Button
                       size="sm"

@@ -87,7 +87,7 @@ export function JourneyPage() {
     <div className="mx-auto w-full max-w-content px-4 py-8 md:px-8">
       <PageHeader
         title="Peta Studi"
-        description={`Mata kuliah kurikulum Sistem Informasi Universitas Jambi menuju ${academicRules.graduationCredits} SKS. Status pada kartu disusun dari profil Anda dan rencana utama.`}
+        description={`Mata kuliah kurikulum Sistem Informasi Universitas Jambi menuju ${academicRules.graduationCredits} SKS. Status pada kartu disusun dari profilmu dan rencana utama.`}
       />
 
       <section aria-label="Legenda status" className="card-subtle mb-6 p-4">
@@ -176,10 +176,15 @@ export function JourneyPage() {
         <div className="mt-4 flex items-start gap-3 text-sm text-muted">
           <TriangleAlert className="mt-0.5 h-4 w-4 shrink-0 text-teal" aria-hidden="true" />
           <p>
-            Kartu berstatus Direncanakan berasal dari rencana utama Anda ({primaryScenario.name}).
+            Kartu berstatus Direncanakan berasal dari rencana utama ({primaryScenario.name}).
           </p>
         </div>
       ) : null}
+
+      <p className="mt-3 text-xs text-muted">
+        Struktur Semester 8 dan sebagian prasyarat mata kuliah masih berupa asumsi demo dan perlu
+        dikonfirmasikan ke program studi atau dosen PA.
+      </p>
     </div>
   );
 }

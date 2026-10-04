@@ -1,12 +1,12 @@
 import { expect, test } from '@playwright/test';
 
-const DEMO_CTA = 'Gunakan Profil Demo';
+const DEMO_CTA = 'Coba Profil Kang Haerin';
 
 test('Kang Haerin - alur perjalanan penuh', async ({ page }) => {
   // 1. Landing
   await page.goto('/');
   await expect(
-    page.getByRole('heading', { name: 'Rencanakan kuliah tanpa menebak-nebak.' }),
+    page.getByRole('heading', { name: 'Rencanakan kuliah, pahami konsekuensinya.' }),
   ).toBeVisible();
 
   // 2. Masuk lewat profil demo
@@ -31,8 +31,8 @@ test('Kang Haerin - alur perjalanan penuh', async ({ page }) => {
   // 5. Scenario Simulator: dua rencana demo hadir, buka salah satu
   await page.getByRole('link', { name: 'Simulasi', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Scenario Simulator' })).toBeVisible();
-  await expect(page.getByText('Enterprise — Seimbang')).toBeVisible();
-  await expect(page.getByText('Data — Pembanding')).toBeVisible();
+  await expect(page.getByText('Enterprise (Seimbang)')).toBeVisible();
+  await expect(page.getByText('Data (Pembanding)')).toBeVisible();
 
   await page.getByRole('link', { name: 'Buka dan ubah', exact: true }).first().click();
   await expect(page.getByRole('heading', { name: 'Ubah skenario' })).toBeVisible();
@@ -42,7 +42,7 @@ test('Kang Haerin - alur perjalanan penuh', async ({ page }) => {
     .getByRole('checkbox', { checked: false, disabled: false })
     .first();
   await uncheckedCourse.check();
-  await expect(page.getByText('Hasil pemeriksaan', { exact: true })).toBeVisible();
+  await expect(page.getByText('Catatan untuk rencana ini')).toBeVisible();
   await page.getByRole('button', { name: 'Simpan perubahan' }).click();
   await expect(page.getByRole('heading', { name: 'Scenario Simulator' })).toBeVisible();
 });
@@ -52,14 +52,14 @@ test('Bandingkan dua skenario demo', async ({ page }) => {
   await page.getByRole('button', { name: DEMO_CTA }).click();
   await page.getByRole('link', { name: 'Simulasi', exact: true }).click();
 
-  const addToCompare = page.getByRole('button', { name: 'Pilih banding' });
+  const addToCompare = page.getByRole('button', { name: 'Pilih untuk dibandingkan' });
   await addToCompare.first().click();
-  await addToCompare.nth(1).click();
+  await page.getByRole('button', { name: 'Pilih untuk dibandingkan' }).click();
   await page.getByRole('button', { name: /Bandingkan \(2\)/ }).click();
 
   await expect(page.getByRole('heading', { name: 'Compare Scenarios' })).toBeVisible();
   await expect(page.getByText('Matriks mata kuliah')).toBeVisible();
-  await expect(page.getByText('Hasil pemeriksaan tiap skenario')).toBeVisible();
+  await expect(page.getByText('Catatan untuk tiap rencana')).toBeVisible();
 });
 
 test('Ringkasan PA, tulis pertanyaan, dan cetak via print', async ({ page }) => {
@@ -69,8 +69,8 @@ test('Ringkasan PA, tulis pertanyaan, dan cetak via print', async ({ page }) => 
 
   await expect(page.getByRole('heading', { name: 'Advisor Brief' })).toBeVisible();
   await expect(page.getByText('Identitas mahasiswa')).toBeVisible();
-  await expect(page.getByText('Rencana utama: Enterprise — Seimbang')).toBeVisible();
-  await expect(page.getByText('Status Magang')).toBeVisible();
+  await expect(page.getByText('Rencana utama: Enterprise (Seimbang)')).toBeVisible();
+  await expect(page.getByText('Kesiapan Magang')).toBeVisible();
 
   await page.getByRole('textbox', { name: /Tulis pertanyaan/ }).fill('Apakah rencana Semester 5 realistis?\nKapan Magang ideal?');
   await page.getByRole('button', { name: 'Simpan pertanyaan' }).click();

@@ -51,7 +51,7 @@ export function SettingsPage() {
       <Breadcrumb crumbs={[{ label: 'Profil dan data' }]} />
       <PageHeader
         title="Profil dan data"
-        description="Perbarui data pribadi akademik Anda."
+        description="Perbarui data pribadi akademik kamu."
       />
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
@@ -163,7 +163,7 @@ export function SettingsPage() {
           <InlineAlert
             tone="info"
             title="Profil demo aktif"
-            reason="Anda dapat mengedit data ini seperti profil biasa."
+            reason="Kamu dapat mengedit data ini seperti profil biasa."
           />
         </div>
       ) : null}

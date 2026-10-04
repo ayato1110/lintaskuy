@@ -34,7 +34,7 @@ export function InternshipPage() {
     : [];
 
   const eligibiltyMeta = {
-    ready: { label: 'Siap mendaftar', cls: 'border-success/30 bg-success/10 text-success' },
+    ready: { label: 'Syarat dasar terpenuhi', cls: 'border-success/30 bg-success/10 text-success' },
     in_progress: { label: 'Perlu konfirmasi nilai', cls: 'border-warning/30 bg-warning/10 text-warning' },
     needs_work: { label: 'Belum memenuhi', cls: 'border-border bg-surface-subtle text-muted' },
   }[internship.eligibility];
@@ -68,7 +68,7 @@ export function InternshipPage() {
       <section aria-labelledby="status-magang-heading" className="card p-5 md:p-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <h2 id="status-magang-heading" className="text-base font-semibold text-ink">
-            Status persyaratan Magang
+            Kesiapan Magang
           </h2>
           <span className={cn('chip-status', eligibiltyMeta.cls)}>
             <Flag className="h-3.5 w-3.5" aria-hidden="true" />
@@ -89,10 +89,11 @@ export function InternshipPage() {
             <div className="min-w-0 flex-1">
               <p className="text-sm font-medium text-ink">SKS selesai minimal {internship.minimumCredits}</p>
               <p className="text-sm text-muted">
-                Saat ini {displaySKS(internship.completedCredits)}.
-                {!internship.creditsMet
-                  ? ` Sisa ${displaySKS(internship.minimumCredits - internship.completedCredits)}.`
-                  : ' Persyaratan terpenuhi.'}
+                Kamu sudah menyelesaikan {displaySKS(internship.completedCredits)} dari{' '}
+                {internship.minimumCredits} SKS yang dibutuhkan untuk Magang.
+                {internship.creditsMet
+                  ? ''
+                  : ` Masih ada ${displaySKS(internship.minimumCredits - internship.completedCredits)} SKS lagi.`}
               </p>
             </div>
           </li>
@@ -122,10 +123,10 @@ export function InternshipPage() {
           <div className="mt-4 border-t border-border pt-4">
             <h3 className="flex items-center gap-2 text-sm font-semibold text-ink">
               <BadgeCheck className="h-4 w-4 text-success" aria-hidden="true" />
-              Siap administrasi
+              Syarat dasar sudah terpenuhi
             </h3>
             <p className="mt-1 text-sm text-muted">
-              Saat ini Anda dapat membahas rencana Magang dengan dosen PA. Konfirmasi jadwal dan
+              Kamu sudah dapat membahas rencana Magang dengan dosen PA. Konfirmasi jadwal dan
               persetujuan program studi dilakukan oleh pihak terkait.
             </p>
           </div>
@@ -164,14 +165,14 @@ export function InternshipPage() {
         <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:items-end">
           <div className="w-full sm:max-w-xs">
             <label htmlFor="custom-intern" className="field-label">
-              Judul kustom
+              Tambahkan posisi lain
             </label>
             <input
               id="custom-intern"
               type="text"
               value={customTitle}
               onChange={(event) => setCustomTitle(event.target.value)}
-              placeholder="Misalnya: Business Analyst Inter"
+              placeholder="Misalnya: Business Analyst Intern"
               className="w-full rounded-control border border-border bg-surface px-3 py-2.5 text-base focus-visible:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
             />
           </div>

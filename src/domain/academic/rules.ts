@@ -52,7 +52,7 @@ export function validateCreditLimit(profile: StudentProfile, scenario: Scenario)
       title: 'Total SKS sesuai batas',
       reason: `Rencana ini memuat ${total} SKS dan masih dalam batas ${limit} SKS untuk ${academicRules.creditLimit.label} ${profile.performanceIndex.toLocaleString('id-ID')}.`,
       source: academicRules.creditLimit.source,
-      nextAction: 'Tidak perlu tindakan.',
+      nextAction: 'Rencana ini masih di dalam batas SKS.',
     };
   }
 
@@ -126,7 +126,7 @@ export function validateScenarioTrack(scenario: Scenario): RuleResult {
     title: 'Jalur konsisten',
     reason: 'Skenario hanya memuat satu peminatan dan cocok dengan jalur yang dicantumkan.',
     source: academicRules.specialization.source,
-    nextAction: 'Tidak perlu tindakan.',
+    nextAction: 'Lanjutkan dengan jalur yang sudah konsisten ini.',
   };
 }
 
@@ -138,7 +138,7 @@ export function validateLockedTrackMatch(profile: StudentProfile, scenario: Scen
       title: 'Belum ada peminatan yang dikunci',
       reason: `Penguncian tersedia mulai Semester ${academicRules.specialization.lockFromSemester}.`,
       source: academicRules.specialization.source,
-      nextAction: 'Anda dapat menjelajahi beberapa jalur sebelum mengunci satu.',
+      nextAction: 'Kamu dapat menjelajahi beberapa jalur sebelum mengunci satu.',
     };
   }
 
@@ -146,7 +146,7 @@ export function validateLockedTrackMatch(profile: StudentProfile, scenario: Scen
     return {
       status: 'error',
       title: 'Skenario berbeda dengan peminatan yang dikunci',
-      reason: `Anda mengunci jalur tertentu, sedangkan skenario ini memakai jalur lain.`,
+      reason: `Kamu mengunci jalur tertentu, sedangkan skenario ini memakai jalur lain.`,
       source: academicRules.specialization.source,
       nextAction: 'Ubah jalur skenario setelah konfirmasi, atau gunakan untuk perbandingan saja.',
     };
@@ -157,7 +157,7 @@ export function validateLockedTrackMatch(profile: StudentProfile, scenario: Scen
     title: 'Skenario sesuai peminatan terkunci',
     reason: 'Jalur pada skenario sama dengan peminatan yang telah dikunci.',
     source: academicRules.specialization.source,
-    nextAction: 'Tidak perlu tindakan.',
+    nextAction: 'Tidak ada pembetulan yang diperlukan.',
   };
 }
 
@@ -169,7 +169,7 @@ export function validateLockAllowed(profile: StudentProfile): RuleResult {
       title: 'Penguncian tersedia mulai Semester 5',
       reason: `Pada Semester ${profile.currentSemester}, penguncian peminatan belum tersedia.`,
       source: academicRules.specialization.source,
-      nextAction: 'Anda tetap dapat melihat dan menyimpan arah yang ingin dieksplorasi.',
+      nextAction: 'Kamu tetap dapat melihat dan menyimpan arah yang ingin dieksplorasi.',
     };
   }
   return {
@@ -198,24 +198,27 @@ export function validatePrerequisites(profile: StudentProfile, scenario: Scenari
   for (const courseId of scenario.selectedCourseIds) {
     const course = coursesById.get(courseId);
     if (!course) continue;
-    const unmet = (course.prerequisiteIds ?? []).filter(
+    const prereqs = course.prerequisiteIds ?? [];
+    if (prereqs.length === 0) continue;
+    const unmet = prereqs.filter(
       (prereqId) =>
         !profile.completedCourseIds.includes(prereqId) &&
         !scenario.selectedCourseIds.includes(prereqId),
     );
-    if ((course.prerequisiteIds ?? []).length > 0 && unmet.length > 0) {
-      const needAll = (course.prerequisiteMode ?? 'all') === 'all';
-      const requirement = needAll
-        ? `semua prasyarat berikut`
-        : `setidaknya satu prasyarat berikut`;
-      results.push({
-        status: 'warning',
-        title: `Prasyarat belum terpenuhi: ${course.name}`,
-        reason: `${course.name} membutuhkan ${requirement}: ${unmet.map((id) => coursesById.get(id)?.name ?? id).join(', ')}.`,
-        source: course.ruleSource,
-        nextAction: 'Konfirmasikan hubungan prasyarat ini kepada program studi atau dosen PA.',
-      });
-    }
+    const needAll = (course.prerequisiteMode ?? 'all') === 'all';
+    const violates = needAll ? unmet.length > 0 : unmet.length === prereqs.length;
+    if (!violates) continue;
+    const requirement = needAll
+      ? `semua prasyarat berikut`
+      : `setidaknya satu prasyarat berikut`;
+    results.push({
+      status: 'warning',
+      title: `Prasyarat untuk ${course.name} belum terpenuhi`,
+      reason: `${course.name} membutuhkan ${requirement}: ${unmet.map((id) => coursesById.get(id)?.name ?? id).join(', ')}.`,
+      source: course.ruleSource,
+      nextAction:
+        'Prasyarat ini masih berupa asumsi demo berdasarkan urutan mata kuliah. Pastikan kembali ke program studi atau dosen PA.',
+    });
   }
   return results;
 }
@@ -230,7 +233,7 @@ export function validateSelectedSameSemester(scenario: Scenario): RuleResult {
       title: 'Semua mata kuliah sesuai semester',
       reason: `Rencana ini disusun untuk Semester ${scenario.targetSemester}.`,
       source: 'curriculum_source',
-      nextAction: 'Tidak perlu tindakan.',
+      nextAction: 'Seluruh mata kuliah berada di semester yang sesuai.',
     };
   }
   return {
@@ -253,10 +256,10 @@ export function assessWorkload(_profile: StudentProfile, scenario: Scenario): Wo
 
   const projectPoints = Math.min(projectCount, 3);
 
-  const maxHours = scenario.commitments.reduce((max, c) => Math.max(max, c.hoursPerWeek), 0);
+  const totalHours = scenario.commitments.reduce((sum, c) => sum + c.hoursPerWeek, 0);
   let commitmentPoints: number;
-  if (maxHours <= 5) commitmentPoints = 0;
-  else if (maxHours <= 10) commitmentPoints = 1;
+  if (totalHours <= 5) commitmentPoints = 0;
+  else if (totalHours <= 10) commitmentPoints = 1;
   else commitmentPoints = 2;
 
   const hasActiveInternship =
@@ -272,15 +275,15 @@ export function assessWorkload(_profile: StudentProfile, scenario: Scenario): Wo
   else category = 'Sangat Tinggi';
 
   const reasons: string[] = [];
-  reasons.push(`${totalCredits} SKS pada rencana ini memberi nilai ${sksPoints}`);
+  reasons.push(`${totalCredits} SKS total beban kuliah.`);
   if (projectCount > 0) {
-    reasons.push(`${projectCount} mata kuliah berproyek memberi nilai ${projectPoints}`);
+    reasons.push(`${projectCount} mata kuliah berbasis proyek.`);
   }
-  if (maxHours > 0) {
-    reasons.push(`Komitmen mingguan ${maxHours} jam memberi nilai ${commitmentPoints}`);
+  if (totalHours > 0) {
+    reasons.push(`Komitmen mingguan ${totalHours} jam di luar kuliah.`);
   }
   if (hasActiveInternship) {
-    reasons.push('Magang aktif pada semester ini memberi nilai 2');
+    reasons.push('Magang aktif pada semester ini.');
   }
 
   return { category, points, reasons };
@@ -364,9 +367,9 @@ export function getCourseStatus(
   if (!prerequisitesMet(course, profile)) {
     return {
       status: 'locked',
-      reason: 'Prasyarat yang diasumsikan belum tercatat terpenuhi. Konfirmasikan ke prodi atau dosen PA.',
+      reason: 'Prasyarat yang diperlukan masih berupa asumsi demo dan belum tercatat terpenuhi. Konfirmasikan ke program studi atau dosen PA.',
     };
   }
 
-  return { status: 'available', reason: 'Mata kuliah siap direncanakan pada semester ini.' };
+  return { status: 'available', reason: 'Mata kuliah ini dapat dipertimbangkan untuk semester yang sesuai.' };
 }

@@ -7,6 +7,7 @@ import {
   prerequisitesMet,
   validateCreditLimit,
   validateLockAllowed,
+  validatePrerequisites,
   validateScenarioTrack,
 } from './rules';
 import { coursesById, demoProfile, seedScenarios } from '@/lib/data-repo';
@@ -133,6 +134,32 @@ describe('prerequisites', () => {
   });
 });
 
+describe('validatePrerequisites', () => {
+  it('tidak memperingatkan mode any ketika setidaknya satu prasyarat terpenuhi', () => {
+    const profile = makeProfile({ completedCourseIds: ['isp234'] });
+    const scenario = makeScenario({ selectedCourseIds: ['isp152'] });
+    const results = validatePrerequisites(profile, scenario);
+    expect(results).toHaveLength(0);
+  });
+
+  it('memperingatkan mode any ketika tidak ada satu pun prasyarat yang terpenuhi', () => {
+    const profile = makeProfile({ completedCourseIds: [] });
+    const scenario = makeScenario({ selectedCourseIds: ['isp152'] });
+    const results = validatePrerequisites(profile, scenario);
+    expect(results).toHaveLength(1);
+    expect(results[0].title).toBe('Prasyarat untuk Pengujian Perangkat Lunak dan Jaminan Kualitas belum terpenuhi');
+    expect(results[0].nextAction).toContain('asumsi demo');
+  });
+
+  it('memperingatkan mode all ketika salah satu prasyarat belum terpenuhi', () => {
+    const profile = makeProfile({ completedCourseIds: ['isp133'] });
+    const scenario = makeScenario({ selectedCourseIds: ['isp151'] });
+    const results = validatePrerequisites(profile, scenario);
+    expect(results).toHaveLength(1);
+    expect(results[0].title).toContain('belum terpenuhi');
+  });
+});
+
 describe('internship eligibility', () => {
   it('belum siap ketika SKS kurang dari 120', () => {
     const result = assessInternshipEligibility(makeProfile({ completedCredits: 84 }));
@@ -175,5 +202,25 @@ describe('workload', () => {
     const profile = makeProfile({});
     const assessment = assessWorkload(profile, makeScenario({ selectedCourseIds: [] }));
     expect(assessment.category).toBe('Ringan');
+  });
+
+  it('menjumlahkan semua komitmen mingguan, bukan hanya yang terbesar', () => {
+    const profile = makeProfile({});
+    const twoCommitments = makeScenario({
+      selectedCourseIds: [],
+      commitments: [
+        { id: 'a', label: 'Organisasi', hoursPerWeek: 6 },
+        { id: 'b', label: 'Kerja paruh waktu', hoursPerWeek: 6 },
+      ],
+    });
+    const oneCommitment = makeScenario({
+      selectedCourseIds: [],
+      commitments: [{ id: 'a', label: 'Organisasi', hoursPerWeek: 6 }],
+    });
+    const summed = assessWorkload(profile, twoCommitments);
+    const single = assessWorkload(profile, oneCommitment);
+    expect(summed.points).toBeGreaterThan(single.points);
+    expect(summed.category).toBe('Seimbang');
+    expect(single.category).toBe('Ringan');
   });
 });

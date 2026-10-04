@@ -37,7 +37,7 @@ export function CareerRoleCard({ roleId }: { roleId: string }) {
           aria-pressed={interested}
         >
           {interested ? <Check className="h-4 w-4" aria-hidden="true" /> : null}
-          {interested ? 'Sudah diikuti' : 'Tandai sebagai minat'}
+          {interested ? 'Sudah ditandai' : 'Tandai sebagai minat'}
         </Button>
       </div>
 
@@ -71,7 +71,7 @@ export function CareerRoleCard({ roleId }: { roleId: string }) {
         </div>
 
         <div>
-          <p className="mb-1.5 text-sm font-medium text-ink">Posisi Magang yang relevan</p>
+          <p className="mb-1.5 text-sm font-medium text-ink">Contoh posisi Magang</p>
           <ul className="flex flex-wrap gap-1.5">
             {role.internshipTitles.map((title) => (
               <li key={title} className="rounded-full border border-teal/30 bg-teal/10 px-2.5 py-1 text-xs text-teal">
@@ -82,7 +82,7 @@ export function CareerRoleCard({ roleId }: { roleId: string }) {
         </div>
 
         <div>
-          <p className="mb-1.5 text-sm font-medium text-ink">Pembelajaran dan portofolio</p>
+          <p className="mb-1.5 text-sm font-medium text-ink">Ide portofolio</p>
           <ul className="flex flex-col gap-1 text-sm text-muted">
             {role.portfolioIdeas.map((idea) => (
               <li key={idea} className="flex items-start gap-2">

@@ -14,7 +14,7 @@ import { PageHeader } from '@/components/ui/page-header';
 import { CreditMeter } from '@/components/ui/credit-meter';
 import { Badge, StatusBadge as StatusPill } from '@/components/academic/status-badge';
 import { useAppStore } from '@/stores/appStore';
-import { academicRules, coursesForSemester } from '@/lib/data-repo';
+import { academicRules, coursesForSemester, specializations } from '@/lib/data-repo';
 import {
   assessInternshipEligibility,
   getCreditLimitInfo,
@@ -60,8 +60,8 @@ function buildActions(profile: StudentProfile, scenarios: Scenario[], primary: S
   if (scenarios.length === 0) {
     actions.push({
       severity: 'info',
-      title: `Belum ada rencana untuk Semester ${profile.currentSemester}`,
-      body: 'Buat skenario paling awal untuk menilai beban dan batas SKS rencana Anda.',
+      title: 'Buat skenario pertamamu',
+      body: 'Simulasikan satu rencana untuk menilai beban dan batas SKS semester ini.',
       to: '/app/scenarios/new',
       cta: 'Buat skenario',
     });
@@ -133,6 +133,9 @@ export function DashboardPage() {
     profile.completedCourseIds.includes(course.id),
   ).length;
   const actions = buildActions(profile, scenarios, primary);
+  const exploredSpecNames = profile.exploredSpecializationIds
+    .map((id) => specializations.find((s) => s.id === id)?.name)
+    .filter((name): name is string => Boolean(name));
 
   return (
     <div className="mx-auto w-full max-w-content px-4 py-8 md:px-8">
@@ -145,7 +148,7 @@ export function DashboardPage() {
           title={`Halo, ${profile.name}`}
           description={`Semester ${profile.currentSemester} · IP ${formatPerformanceIndex(profile.performanceIndex)}`}
           actions={
-            profile.isDemoPersona ? <Badge tone="info">Profil demo</Badge> : <Badge>Profil Anda</Badge>
+            profile.isDemoPersona ? <Badge tone="info">Profil demo</Badge> : <Badge>Profil pribadi</Badge>
           }
         />
       </motion.div>
@@ -194,6 +197,11 @@ export function DashboardPage() {
             {profile.completedCourseIds.length} mata kuliah total telah diselesaikan
           </p>
         </div>
+        {exploredSpecNames.length > 0 ? (
+          <p className="mt-3 text-sm text-muted">
+            Sedang membandingkan: {exploredSpecNames.join(' dan ')}.
+          </p>
+        ) : null}
       </motion.section>
 
       <motion.div
@@ -207,10 +215,12 @@ export function DashboardPage() {
           className="card-subtle p-5 lg:col-span-2 lg:row-span-2"
         >
           <h2 id="tindakan-label" className="mb-3 text-base font-semibold text-ink">
-            Tindakan berikutnya
+            Yang bisa kamu lakukan sekarang
           </h2>
           {actions.length === 0 ? (
-            <p className="text-sm text-muted">Profil Anda dalam kondisi siap dibahas bersama PA.</p>
+            <p className="text-sm text-muted">
+              Belum ada catatan mendesak. Kamu bisa lanjut menyiapkan bahan konsultasi dengan dosen PA.
+            </p>
           ) : (
             <ul className="flex flex-col divide-y divide-border">
               {actions.map((action, index) => (
@@ -246,14 +256,14 @@ export function DashboardPage() {
         <section aria-labelledby="magang-label" className="card-subtle p-5">
           <div className="flex items-center justify-between">
             <h2 id="magang-label" className="text-base font-semibold text-ink">
-              Status Magang
+              Cek kesiapan Magang
             </h2>
             <Badge tone={internship.eligibility === 'ready' ? 'success' : internship.eligibility === 'in_progress' ? 'warning' : 'info'}>
               {internship.eligibility === 'ready'
-                ? 'Siap'
+                ? 'Syarat dasar terpenuhi'
                 : internship.eligibility === 'in_progress'
-                  ? 'Perlu konfirmasi'
-                  : 'Dalam proses'}
+                  ? 'Perlu konfirmasi nilai'
+                  : 'Belum memenuhi'}
             </Badge>
           </div>
           <p className="mt-3 text-sm text-muted">
@@ -278,7 +288,7 @@ export function DashboardPage() {
 
         <section aria-labelledby="pintasan-label" className="card-subtle p-5">
           <h2 id="pintasan-label" className="mb-3 text-base font-semibold text-ink">
-            Pintasan fitur
+            Mau lanjut ke mana?
           </h2>
           <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
             {quickLinks.map((item) => {

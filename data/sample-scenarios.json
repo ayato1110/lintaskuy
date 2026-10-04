@@ -3,7 +3,7 @@
   "items": [
     {
       "id": "haerin-enterprise-balanced",
-      "name": "Enterprise — Seimbang",
+      "name": "Enterprise (Seimbang)",
       "targetSemester": 5,
       "selectedCourseIds": [
         "isp151",
@@ -28,7 +28,7 @@
     },
     {
       "id": "haerin-data-comparison",
-      "name": "Data — Pembanding",
+      "name": "Data (Pembanding)",
       "targetSemester": 5,
       "selectedCourseIds": [
         "isp151",

@@ -53,7 +53,7 @@ export function AdvisorBriefPage() {
         <Breadcrumb crumbs={[{ label: 'Ringkasan PA' }]} />
         <PageHeader
           title="Advisor Brief"
-          description="Bahan ringkas untuk diskusi dengan dosen pembimbing: posisi Anda, rencana utama, risiko, dan pertanyaan yang ingin diajukan."
+          description="Bahan ringkas untuk diskusi dengan dosen pembimbing: posisi, rencana utama, risiko, dan pertanyaan yang ingin diajukan."
           actions={
             <Button onClick={() => window.print()}>
               <Printer className="h-4 w-4" aria-hidden="true" />
@@ -68,7 +68,7 @@ export function AdvisorBriefPage() {
           <InlineAlert
             tone="warning"
             title="Belum ada rencana utama"
-            reason="Ringkasan PA belum memuat skenario. Tetapkan satu skenario sebagai rencana utama agar dosen pembimbing melihat arah Anda."
+            reason="Ringkasan PA belum memuat skenario. Tetapkan satu skenario sebagai rencana utama agar dosen pembimbing melihat arah yang menjadi pertimbangan."
             nextAction="Buka daftar skenario dan tekan Jadikan rencana utama."
           />
         </div>
@@ -122,11 +122,11 @@ export function AdvisorBriefPage() {
                 <dd className="font-medium text-ink">{brief.specialization?.name ?? 'Belum memilih'}</dd>
               </div>
               <div>
-                <dt className="text-muted">Peran karier target</dt>
+                <dt className="text-muted">Arah karier yang dipertimbangkan</dt>
                 <dd className="font-medium text-ink">{brief.careerRole?.title ?? 'Belum memilih'}</dd>
               </div>
               <div>
-                <dt className="text-muted">Posisi Magang target</dt>
+                <dt className="text-muted">Target posisi Magang</dt>
                 <dd className="font-medium text-ink">{primaryScenario.targetInternshipRole ?? 'Belum memilih'}</dd>
               </div>
             </dl>
@@ -168,15 +168,15 @@ export function AdvisorBriefPage() {
 
       <section className="print-section card mt-4 p-5 md:p-6" aria-labelledby="brief-magang">
         <h2 id="brief-magang" className="print-section-title text-base font-semibold text-ink">
-          Status Magang
+          Kesiapan Magang
         </h2>
         <dl className="mt-3 grid grid-cols-1 gap-x-6 gap-y-2 text-sm sm:grid-cols-2">
           <div>
             <dt className="text-muted">Syarat SKS minimal {brief.internship.minimumCredits}</dt>
             <dd className="font-medium text-ink">
               {brief.internship.creditsMet
-                ? `Terpenuhi (${brief.internship.completedCredits} SKS)`
-                : `Belum, saat ini ${brief.internship.completedCredits} SKS`}
+                ? `Terpenuhi (${brief.internship.completedCredits} dari ${brief.internship.minimumCredits} SKS)`
+                : `Belum, saat ini ${brief.internship.completedCredits} dari ${brief.internship.minimumCredits} SKS`}
             </dd>
           </div>
           <div>
@@ -191,7 +191,7 @@ export function AdvisorBriefPage() {
           tone={brief.internship.eligibility === 'ready' ? 'success' : 'warning'}
         >
           {brief.internship.eligibility === 'ready'
-            ? 'Siap administrasi'
+            ? 'Syarat dasar terpenuhi'
             : brief.internship.eligibility === 'in_progress'
               ? 'Perlu konfirmasi nilai'
               : 'Belum memenuhi'}
@@ -204,7 +204,8 @@ export function AdvisorBriefPage() {
         </h2>
         {brief.risks.length === 0 ? (
           <p className="mt-3 text-sm text-muted">
-            Tidak ada risiko berbasis aturan yang terdeteksi pada rencana saat ini.
+            Belum ada catatan dari pemeriksaan LINTAS. Rencana ini tetap perlu dikonfirmasikan kepada
+            dosen PA.
           </p>
         ) : (
           <div className="mt-3 flex flex-col gap-2">
@@ -220,7 +221,9 @@ export function AdvisorBriefPage() {
           Pertanyaan untuk dosen pembimbing
         </h2>
         {brief.questions.length === 0 ? (
-          <p className="mt-3 text-sm text-muted">Belum ada pertanyaan yang ditambahkan.</p>
+          <p className="mt-3 text-sm text-muted">
+            Tambahkan hal yang ingin dipastikan saat berkonsultasi dengan dosen PA.
+          </p>
         ) : (
           <ol className="mt-3 flex list-decimal flex-col gap-2 pl-5 text-sm text-ink">
             {brief.questions.map((question) => (
@@ -253,6 +256,10 @@ export function AdvisorBriefPage() {
           </div>
         </div>
       </section>
+
+      <p className="mt-6 text-sm text-muted">
+        Ringkasan ini dibuat sebagai bahan konsultasi, bukan persetujuan akademik resmi.
+      </p>
     </div>
   );
 }

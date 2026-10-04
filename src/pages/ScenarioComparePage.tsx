@@ -35,7 +35,7 @@ export function ScenarioComparePage() {
   const selected = rawIds
     .map((id) => scenarios.find((s) => s.id === id))
     .filter((s): s is Scenario => Boolean(s))
-    .slice(0, 3);
+    .slice(0, 2);
 
   if (selected.length < 2) {
     return (
@@ -44,7 +44,7 @@ export function ScenarioComparePage() {
         <InlineAlert
           tone="warning"
           title="Butuh minimal dua skenario"
-          reason="Pilih dua hingga tiga skenario dari daftar, lalu tekan tombol Bandingkan."
+          reason="Pilih dua skenario dari daftar, lalu tekan tombol Bandingkan."
           nextAction="Kembali ke daftar skenario"
         />
         <Link to="/app/scenarios" className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary underline hover:text-primary-strong">
@@ -69,7 +69,7 @@ export function ScenarioComparePage() {
       />
       <PageHeader
         title="Compare Scenarios"
-        description={`Perbandingan ${selected.length} rencana berdampingan untuk melihat konsekuensi memilih satu arah.`}
+        description="Bandingkan dua rencana sebelum menentukan pilihan utama."
         actions={
           <Link
             to="/app/scenarios"
@@ -210,7 +210,7 @@ export function ScenarioComparePage() {
       <section aria-labelledby="hasil-heading" className="mt-8">
         <h2 id="hasil-heading" className="mb-3 flex items-center gap-2 text-base font-semibold text-ink">
           <GitCompareArrows className="h-4 w-4 text-muted" aria-hidden="true" />
-          Hasil pemeriksaan tiap skenario
+          Catatan untuk tiap rencana
         </h2>
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           {selected.map((s) => (
