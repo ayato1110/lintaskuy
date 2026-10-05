@@ -11,6 +11,8 @@ import { InlineAlert } from '@/components/ui/alert';
 import { specializations, careerRoles } from '@/lib/data-repo';
 import { useAppStore } from '@/stores/appStore';
 import type { StudentProfile } from '@/domain/types';
+import { calculateCredits } from '@/domain/academic/rules';
+import { pruneCompletedCourseIds } from '@/domain/academic/progress';
 import { displaySKS } from '@/lib/format';
 
 const semesterOptions: SelectOption[] = Array.from({ length: 8 }, (_, index) => ({
@@ -29,20 +31,32 @@ export function SettingsPage() {
 
   const [semesterValue, setSemesterValue] = useState<string | null>(null);
   const [ipValue, setIpValue] = useState('');
+  const [semesterNote, setSemesterNote] = useState('');
   const [confirmReset, setConfirmReset] = useState(false);
   const [confirmDemo, setConfirmDemo] = useState(false);
 
   if (!profile) return null;
 
-  function applyEdits() {
+  const applyEdits = () => {
     const patch: Record<string, unknown> = {};
-    if (semesterValue !== null) patch.currentSemester = Number(semesterValue);
+    if (semesterValue !== null) {
+      const nextSemester = Number(semesterValue);
+      patch.currentSemester = nextSemester;
+      const { kept, removed } = pruneCompletedCourseIds(profile.completedCourseIds, nextSemester);
+      if (removed.length > 0) {
+        patch.completedCourseIds = kept;
+        patch.completedCredits = calculateCredits(kept);
+        setSemesterNote(
+          `${removed.length} mata kuliah dikeluarkan dari riwayat karena semester aktifmu sekarang Semester ${nextSemester}.`,
+        );
+      }
+    }
     const parsedIp = Number(ipValue.replace(',', '.'));
     if (ipValue !== '' && !Number.isNaN(parsedIp)) patch.performanceIndex = parsedIp;
     updateProfile(patch as Partial<StudentProfile>);
     setSemesterValue(null);
     setIpValue('');
-  }
+  };
 
   const dirty = semesterValue !== null || ipValue !== '';
 
@@ -89,6 +103,11 @@ export function SettingsPage() {
               <div>
                 <Button onClick={applyEdits}>Simpan perubahan semester atau IP</Button>
               </div>
+            ) : null}
+            {semesterNote ? (
+              <p className="text-sm text-muted" role="status">
+                {semesterNote}
+              </p>
             ) : null}
           </div>
 

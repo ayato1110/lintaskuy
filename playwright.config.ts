@@ -7,12 +7,12 @@ export default defineConfig({
   retries: 0,
   reporter: [['list']],
   use: {
-    baseURL: 'http://localhost:5173/lintaskuy',
+    baseURL: 'http://localhost:5173/lintaskuy/',
     trace: 'retain-on-failure',
   },
   webServer: {
     command: 'npm run dev -- --port 5173 --strictPort',
-    url: 'http://localhost:5173/lintaskuy',
+    url: 'http://localhost:5173/lintaskuy/',
     reuseExistingServer: true,
     timeout: 60_000,
   },

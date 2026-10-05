@@ -219,6 +219,28 @@ describe('internship eligibility', () => {
     expect(result.eligibility).toBe('in_progress');
     expect(result.gradesAboveC).toBe(false);
   });
+
+  it('menyyaratkan nilai belum dapat dievaluasi ketika belum ada riwayat mata kuliah', () => {
+    const result = assessInternshipEligibility(
+      makeProfile({
+        currentSemester: 1,
+        completedCourseIds: [],
+        completedCredits: 0,
+        allCompletedGradesAboveC: false,
+      }),
+    );
+    expect(result.gradesAboveC).toBeNull();
+    expect(result.eligibility).toBe('needs_work');
+    expect(result.nextActions.join(' ')).toContain('belum dapat dievaluasi');
+    expect(result.nextActions.join(' ')).not.toContain('berada di atas C');
+  });
+
+  it('profil demo tetap dianggap memenuhi syarat nilai', () => {
+    const result = assessInternshipEligibility(demoProfile);
+    expect(result.gradesAboveC).toBe(true);
+    expect(result.completedCredits).toBe(84);
+    expect(demoProfile.completedCourseIds.length).toBe(31);
+  });
 });
 
 describe('workload', () => {

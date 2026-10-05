@@ -100,12 +100,12 @@ export function LandingPage() {
           LINTAS<span className="text-primary">.</span>
         </p>
         <Button variant="ghost" size="sm" onClick={() => navigate('/onboarding')}>
-          Mulai dari profil sendiri
+          Isi Profil Saya
         </Button>
       </header>
 
       <main>
-        <section className="mx-auto grid w-full max-w-content gap-10 px-4 py-10 md:grid-cols-2 md:items-center md:px-8 md:py-16">
+        <section className="mx-auto grid w-full max-w-content gap-10 px-4 py-10 md:grid-cols-2 md:items-start md:px-8 md:py-16">
           <div>
             <p className="text-sm font-medium text-primary">Portal perencanaan kuliah berbasis skenario</p>
             <h1 className="mt-2 text-display-mobile font-semibold leading-tight text-ink md:text-display">

@@ -1,4 +1,5 @@
 import { academicRules, coursesById } from '@/lib/data-repo';
+import { hasCompletedHistory } from '@/domain/academic/progress';
 import type {
   Course,
   CourseStatus,
@@ -296,10 +297,11 @@ export function assessWorkload(_profile: StudentProfile, scenario: Scenario): Wo
 export function assessInternshipEligibility(profile: StudentProfile): InternshipResult {
   const minimum = academicRules.internship.minimumCompletedCredits;
   const creditsMet = profile.completedCredits >= minimum;
-  const gradesAboveC = profile.allCompletedGradesAboveC;
+  const hasHistory = hasCompletedHistory(profile.completedCourseIds);
+  const gradesAboveC: boolean | null = hasHistory ? profile.allCompletedGradesAboveC : null;
 
   let eligibility: InternshipResult['eligibility'];
-  if (creditsMet && gradesAboveC) eligibility = 'ready';
+  if (creditsMet && gradesAboveC === true) eligibility = 'ready';
   else if (creditsMet) eligibility = 'in_progress';
   else eligibility = 'needs_work';
 
@@ -307,10 +309,14 @@ export function assessInternshipEligibility(profile: StudentProfile): Internship
   if (!creditsMet) {
     nextActions.push(`Lanjutkan menempuh mata kuliah hingga mencapai ${minimum} SKS.`);
   }
-  if (!gradesAboveC) {
+  if (gradesAboveC === null) {
+    nextActions.push(
+      'Syarat nilai belum dapat dievaluasi karena belum ada riwayat mata kuliah dari semester sebelumnya.',
+    );
+  } else if (!gradesAboveC) {
     nextActions.push('Pastikan seluruh nilai mata kuliah yang telah ditempuh berada di atas C, lalu konfirmasikan ke program studi.');
   }
-  if (creditsMet && gradesAboveC) {
+  if (creditsMet && gradesAboveC === true) {
     nextActions.push('Siapkan kompetensi dan portofolio untuk posisi Magang yang diminati.');
   }
 

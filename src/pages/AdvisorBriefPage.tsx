@@ -182,7 +182,11 @@ export function AdvisorBriefPage() {
           <div>
             <dt className="text-muted">Semua nilai di atas C</dt>
             <dd className="font-medium text-ink">
-              {brief.internship.gradesAboveC ? 'Terpenuhi' : 'Belum terkonfirmasi'}
+              {brief.internship.gradesAboveC === null
+                ? 'Belum dapat dievaluasi'
+                : brief.internship.gradesAboveC
+                  ? 'Terpenuhi'
+                  : 'Belum terkonfirmasi'}
             </dd>
           </div>
         </dl>

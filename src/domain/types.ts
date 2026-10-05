@@ -105,7 +105,8 @@ export interface InternshipResult {
   completedCredits: number;
   minimumCredits: number;
   creditsMet: boolean;
-  gradesAboveC: boolean;
+  /** null berarti syarat nilai belum dapat dievaluasi karena belum ada riwayat mata kuliah. */
+  gradesAboveC: boolean | null;
   sources: RuleSource[];
   nextActions: string[];
 }

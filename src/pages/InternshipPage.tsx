@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { BadgeCheck, CalendarClock, Check, Flag, Plus, X } from 'lucide-react';
+import { BadgeCheck, CalendarClock, Check, Flag, Minus, Plus, X } from 'lucide-react';
 import { PageHeader } from '@/components/ui/page-header';
 import { Badge, StatusBadge } from '@/components/academic/status-badge';
 import { InlineAlert } from '@/components/ui/alert';
@@ -101,19 +101,31 @@ export function InternshipPage() {
             <span
               className={cn(
                 'flex h-7 w-7 shrink-0 items-center justify-center rounded-full',
-                internship.gradesAboveC ? 'bg-success/10 text-success' : 'bg-surface-subtle text-muted',
+                internship.gradesAboveC === true
+                  ? 'bg-success/10 text-success'
+                  : internship.gradesAboveC === false
+                    ? 'bg-surface-subtle text-muted'
+                    : 'border border-border bg-surface text-muted',
               )}
             >
-              {internship.gradesAboveC ? <Check className="h-4 w-4" aria-hidden="true" /> : <X className="h-4 w-4" aria-hidden="true" />}
+              {internship.gradesAboveC === null ? (
+                <Minus aria-hidden="true" />
+              ) : internship.gradesAboveC ? (
+                <Check className="h-4 w-4" aria-hidden="true" />
+              ) : (
+                <X className="h-4 w-4" aria-hidden="true" />
+              )}
             </span>
             <div className="min-w-0 flex-1">
               <p className="text-sm font-medium text-ink">
                 Seluruh nilai di atas {academicRules.internship.allCompletedGradesMustBeAbove}
               </p>
               <p className="text-sm text-muted">
-                {internship.gradesAboveC
-                  ? 'Berdasarkan jawabanmu, seluruh nilai yang sudah ditempuh berada di atas C.'
-                  : 'Status nilai belum dikonfirmasi. Periksa kembali data pada profil.'}
+                {internship.gradesAboveC === null
+                  ? 'Belum dapat dievaluasi karena belum ada riwayat mata kuliah dari semester sebelumnya.'
+                  : internship.gradesAboveC
+                    ? 'Berdasarkan jawabanmu, seluruh nilai yang sudah ditempuh berada di atas C.'
+                    : 'Status nilai belum dikonfirmasi. Periksa kembali data pada profil.'}
               </p>
             </div>
           </li>
