@@ -148,6 +148,8 @@ test('B. Semester 1 tidak menampilkan riwayat dan menandai nilai belum dapat die
   await expect(page.getByRole('heading', { name: 'Perencanaan Magang' })).toBeVisible();
   await expect(page.getByText('Syarat nilai belum dapat dievaluasi')).toBeVisible();
   await expect(page.getByText(/seluruh nilai yang sudah ditempuh berada di atas C/)).toHaveCount(0);
+  await expect(page.getByText(/Masih ada 120 SKS lagi\./)).toBeVisible();
+  await expect(page.getByText('SKS SKS')).toHaveCount(0);
 });
 
 test('C. Matriks validasi Indeks Prestasi', async ({ page }) => {

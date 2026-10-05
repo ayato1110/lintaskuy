@@ -93,7 +93,7 @@ export function InternshipPage() {
                 {internship.minimumCredits} SKS yang dibutuhkan untuk Magang.
                 {internship.creditsMet
                   ? ''
-                  : ` Masih ada ${displaySKS(internship.minimumCredits - internship.completedCredits)} SKS lagi.`}
+                  : ` Masih ada ${internship.minimumCredits - internship.completedCredits} SKS lagi.`}
               </p>
             </div>
           </li>
