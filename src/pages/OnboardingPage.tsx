@@ -26,7 +26,7 @@ const internshipTitleOptions: SelectOption[] = Array.from(
   new Set(careerRoles.flatMap((role) => role.internshipTitles)),
 ).map((title) => ({ value: title, label: title }));
 
-const stepTitles = ['Semester dan nilai', 'Riwayat matakuliah', 'Peminatan dan karier', 'Aktivitas dan Magang'];
+const stepTitles = ['Semester dan nilai', 'Riwayat mata kuliah', 'Peminatan dan karier', 'Aktivitas dan Magang'];
 
 const IP_ERROR = 'Masukkan Indeks Prestasi antara 0 dan 4.';
 

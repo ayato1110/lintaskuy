@@ -246,7 +246,7 @@ test('F. Alur tetap dapat dipakai di layar kecil', async ({ page }) => {
   const currentStep = stepper.locator('[aria-current="step"]');
   await expect(currentStep).toHaveCount(1);
   await expect(currentStep).toContainText('Semester dan nilai');
-  for (const title of ['Riwayat matakuliah', 'Peminatan dan karier', 'Aktivitas dan Magang']) {
+  for (const title of ['Riwayat mata kuliah', 'Peminatan dan karier', 'Aktivitas dan Magang']) {
     await expect(stepper.getByText(title, { exact: true })).toBeHidden();
   }
 
@@ -261,6 +261,19 @@ test('F. Alur tetap dapat dipakai di layar kecil', async ({ page }) => {
   await next.click();
 
   await expect(page.getByText('Kamu belum memiliki riwayat')).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Langkah 2 dari 4: Riwayat mata kuliah/ })).toBeVisible();
+  await expectNoHorizontalOverflow(page);
+
+  await next.click();
+  await expect(page.getByRole('heading', { name: /Langkah 3 dari 4/ })).toBeVisible();
+  await expectNoHorizontalOverflow(page);
+
+  await next.click();
+  await expect(page.getByRole('heading', { name: /Langkah 4 dari 4/ })).toBeVisible();
+  await expectNoHorizontalOverflow(page);
+
+  await page.getByRole('button', { name: 'Simpan profil' }).click();
+  await expect(page.getByRole('heading', { name: /Halo, Mahasiswa/ })).toBeVisible();
   await expectNoHorizontalOverflow(page);
 });
 
