@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Compass, Lock, Unlock } from 'lucide-react';
+import { Lock, Unlock } from 'lucide-react';
 import { PageHeader } from '@/components/ui/page-header';
 import {
   Tabs,
@@ -155,10 +155,7 @@ export function SpecializationsPage() {
 
       <Tabs defaultValue="specializations">
         <TabsList ariaLabel="Bagian Peminatan">
-          <TabsTrigger value="specializations">
-            <Compass className="mr-1.5 h-4 w-4" aria-hidden="true" />
-            Peminatan
-          </TabsTrigger>
+          <TabsTrigger value="specializations">Peminatan</TabsTrigger>
           <TabsTrigger value="career">Kompas Karier</TabsTrigger>
         </TabsList>
 

@@ -170,7 +170,7 @@ function MobileTopBar() {
         <button
           type="button"
           onClick={() => navigate('/app/settings')}
-          className="flex max-w-[10rem] items-center gap-2 rounded-full border border-border bg-surface py-1 pl-1 pr-3 text-xs font-medium text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+          className="flex min-h-11 min-w-0 max-w-[10rem] items-center gap-2 rounded-full border border-border bg-surface py-1 pl-1 pr-3 text-xs font-medium text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
         >
           <span
             aria-hidden="true"
@@ -182,7 +182,7 @@ function MobileTopBar() {
         </button>
         <LogoutWithConfirm
           ariaLabel="Keluar dari sesi ini"
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-control text-muted hover:bg-surface-subtle hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-control text-muted hover:bg-surface-subtle hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
         >
           <LogOut className="h-4 w-4" aria-hidden="true" />
         </LogoutWithConfirm>
@@ -193,7 +193,6 @@ function MobileTopBar() {
 
 function MobileBottomNav() {
   const profile = useAppStore((state) => state.persisted.profile);
-  const items: NavItem[] = [...primaryNav, { to: '/app/settings', label: 'Profil', icon: Settings }];
   if (!profile) return null;
   return (
     <nav
@@ -201,7 +200,7 @@ function MobileBottomNav() {
       className="no-print fixed inset-x-0 bottom-0 z-30 border-t border-border bg-surface pb-[env(safe-area-inset-bottom)] lg:hidden"
     >
       <ul className="flex items-stretch justify-around">
-        {items.map((item) => {
+        {primaryNav.map((item) => {
           const Icon = item.icon;
           return (
             <li key={item.to} className="flex-1">

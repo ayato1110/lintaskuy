@@ -68,7 +68,7 @@ export function ScenarioComparePage() {
         crumbs={[{ label: 'Simulasi', path: '/app/scenarios' }, { label: 'Banding' }]}
       />
       <PageHeader
-        title="Compare Scenarios"
+        title="Bandingkan Skenario"
         description="Bandingkan dua rencana sebelum menentukan pilihan utama."
         actions={
           <Link
@@ -83,6 +83,10 @@ export function ScenarioComparePage() {
 
       <p className="-mt-3 mb-6 text-sm text-muted">
         Lihat perbedaan SKS, mata kuliah, beban, dan aktivitas di luar kuliah.
+      </p>
+
+      <p className="mb-2 text-xs text-muted sm:hidden">
+        Geser tabel ke samping untuk melihat kedua rencana.
       </p>
 
       <div className="overflow-x-auto rounded-card border border-border">
@@ -158,6 +162,9 @@ export function ScenarioComparePage() {
         <h2 id="matrix-heading" className="mb-3 text-base font-semibold text-ink">
           Matriks mata kuliah
         </h2>
+        <p className="mb-2 text-xs text-muted sm:hidden">
+          Geser tabel ke samping untuk melihat mata kuliah tiap rencana.
+        </p>
         <div className="overflow-x-auto rounded-card border border-border">
           <table className="w-full min-w-[560px] border-collapse text-sm">
             <thead>
@@ -185,12 +192,12 @@ export function ScenarioComparePage() {
                     </td>
                     {selected.map((s) =>
                       s.selectedCourseIds.includes(courseId) ? (
-                        <td key={s.id} className="p-3 text-right text-teal">
+                        <td key={s.id} className="relative p-3 text-right text-teal">
                           <Check className="inline h-4 w-4" aria-hidden="true" />
                           <span className="sr-only">termasuk</span>
                         </td>
                       ) : (
-                        <td key={s.id} className="p-3 text-right text-muted">
+                        <td key={s.id} className="relative p-3 text-right text-muted">
                           <X className="inline h-4 w-4" aria-hidden="true" />
                           <span className="sr-only">tidak termasuk</span>
                         </td>
@@ -216,7 +223,7 @@ export function ScenarioComparePage() {
           <GitCompareArrows className="h-4 w-4 text-muted" aria-hidden="true" />
           Catatan setiap rencana
         </h2>
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           {selected.map((s) => (
             <div key={s.id} className="flex flex-col gap-3">
               <h3 className="text-sm font-semibold text-ink">{s.name}</h3>
@@ -228,7 +235,7 @@ export function ScenarioComparePage() {
 
       <InlineAlert
         tone="info"
-        title="Interpretasi"
+        title="Cara membaca hasil"
         reason="Perbandingan ini menyoroti konsekuensi berbasis aturan, bukan rekomendasi mutlak. Keputusan akhir tetap memerlukan diskusi dengan dosen PA."
       />
     </div>

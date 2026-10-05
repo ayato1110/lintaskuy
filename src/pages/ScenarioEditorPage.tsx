@@ -109,6 +109,22 @@ export function ScenarioEditorPage() {
     return [...bySemester.entries()].sort((a, b) => a[0] - b[0]);
   }, [specCourses]);
 
+  const activeSpecCourseIds = useMemo(
+    () => new Set(specCourses.map((course) => course.id)),
+    [specCourses],
+  );
+
+  const visibleGeneralGroups = useMemo(
+    () =>
+      groups
+        .map((group) => ({
+          ...group,
+          items: group.items.filter((item) => !activeSpecCourseIds.has(item.id)),
+        }))
+        .filter((group) => group.items.length > 0),
+    [groups, activeSpecCourseIds],
+  );
+
   if (!profile) return <Navigate to="/onboarding" replace />;
 
   if (!isNew && !existing) {
@@ -326,7 +342,7 @@ export function ScenarioEditorPage() {
             ) : null}
 
             <div className="mt-4 flex flex-col gap-4">
-              {groups.map((group) => (
+              {visibleGeneralGroups.map((group) => (
                 <div key={group.semester} className={cn(group.semester === targetSemester && 'rounded-control border border-primary/30 bg-primary/5 p-3')}>
                   <h3 className="mb-2 text-sm font-medium text-ink">
                     Semester {group.semester}
