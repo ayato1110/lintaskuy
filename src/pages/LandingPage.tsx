@@ -105,7 +105,7 @@ export function LandingPage() {
       </header>
 
       <main>
-        <section className="mx-auto grid w-full max-w-content gap-10 px-4 py-8 md:grid-cols-2 md:items-start md:px-8 md:py-12">
+        <section className="mx-auto grid w-full max-w-content gap-10 px-4 py-4 md:grid-cols-2 md:items-center md:px-8 md:py-9">
           <div>
             <p className="text-sm font-medium text-primary">Portal perencanaan kuliah berbasis skenario</p>
             <h1 className="mt-2 text-display-mobile font-semibold leading-tight text-ink md:text-display">
